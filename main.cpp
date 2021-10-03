@@ -1,0 +1,289 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <clocale>
+#include <cstring>
+#include <cstdio>
+#include "Canciones.h"
+
+using namespace std;
+
+/**
+ * Abre el archivo según el origen, procesa las líneas del mismo y
+ * almacena la información resultante en el contenedor pasado por referencia.
+ **/
+
+//Comentarios: atoi y atof requieren un char * para converter a número, usamos c_str de la clase string.
+Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
+{
+    int i = 0;
+    ifstream archivo(origen);
+    if (!archivo.is_open())
+        cout << "No se pudo abrir el archivo: " << origen << endl;
+    else {
+        string linea;
+        getline(archivo, linea);
+        int cantidad_canciones = atoi(linea.c_str());
+        arrFrontera = cantidad_canciones;
+        auto* arrCanciones = new Canciones[cantidad_canciones];
+
+        //Leemos de una linea completa por vez (getline).
+        int nroCancion = 1;
+        while (getline(archivo, linea)) {
+            //Primer posición del separador ;
+            int pos_inicial = 0;
+            int pos_final = linea.find(',');
+
+            int idCancion = 1;
+
+            //Informacion entre pos_inicial y pos_final
+            string interprete = linea.substr(pos_inicial, pos_final);
+
+            //Segunda posición del separador ;
+            pos_inicial = pos_final + 1;
+            pos_final = linea.find(',', pos_inicial);
+            string nombreCancion = linea.substr(pos_inicial, pos_final - pos_inicial);
+
+            //Tercera posición del separador ;
+            pos_inicial = pos_final + 1;
+            pos_final = linea.find(',', pos_inicial);
+            int duracion = atoi(linea.substr(pos_inicial, pos_final - pos_inicial).c_str());
+
+            //Cuarta posición del separador ;
+            pos_inicial = pos_final + 1;
+            pos_final = linea.find(',', pos_inicial);
+            string anio = linea.substr(pos_inicial, pos_final - pos_inicial);
+
+            //Quinta posición del separador ;
+            //LISTA de GENEROS
+            pos_inicial = pos_final + 1;
+            pos_final = linea.find(',', pos_inicial);
+            string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
+
+            //Sexta posición del separador ;
+            pos_inicial = pos_final + 1;
+            pos_final = linea.find(';', pos_inicial);
+            int reproducciones = atoi(linea.substr(pos_inicial, pos_final - pos_inicial).c_str());
+
+            Canciones canciones(nroCancion, interprete, nombreCancion, duracion, anio, lst_generos, reproducciones);
+            arrCanciones[i] = canciones;
+            i++;
+            nroCancion++;
+
+/*          cout << "   CANCION Nro "<< nroCancion<< "--------------------------------------" << endl;
+            cout << "   ID: " << idCancion << endl;
+            cout << "   INTERPRETE: " << interprete<< endl;
+            cout << "   NOMBRE CANCION: " << nombreCancion<< endl;
+            cout << "   DURACION: " << duracion<<endl;
+            cout << "   AÑO LANZAMIENTO: " << anio<< endl;
+            cout << "   GENEROS: " << lst_generos<<endl;
+            cout << "   CANT REPRODUCCIONES: " << reproducciones <<endl;
+
+            //TO DO: Completar la lectura de los generos de la cancion
+
+            //Desde esta posición hasta el final se encuentra un número variable de géneros de cada canción.
+            //no tomo en cuenta los corchetes
+            string generos = lst_generos.substr(1, lst_generos.size()-2);
+
+
+            // el siguiente código de prueba separa los diferentes géneros en un arreglo de 10 posiciones
+            string listaGeneros[10];
+            int pos_inicial_generos = 0, pos_final_generos = 0;
+            int nroGenero = 0;
+            while (pos_final_generos != -1) {
+                pos_final_generos = generos.find('|', pos_inicial_generos);
+                listaGeneros[nroGenero] = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
+                pos_inicial_generos = pos_final_generos + 1;
+                nroGenero++;
+            }
+
+            for (int i=0; i<10; i++){
+                cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
+            }
+*/
+        }
+        return arrCanciones;
+    }
+    return 0;
+}
+
+// struct para el arreglo ordenado por nombreCancion para asi realizar busqueda binaria;
+struct segArreglo
+{
+    unsigned int nroCancion;
+    string interprete;
+    string nombreCancion;
+    unsigned int duracion;
+    string anio;
+    string generos;
+    unsigned int reproducciones;
+};
+
+// procedimiento que imprime un arreglo de principio a fin de longitud n;
+void imprimeArr(Canciones arrCanciones[], int& arrFrontera) {
+
+    cout << "--------------------------------------------------\n";
+    for (int i = 0; i < arrFrontera; i++)
+        arrCanciones[i].imprimeDatos();
+}
+
+// procedimiento que inicializa un arreglo de principio a fin de longitud n;
+void inicArregloNombreCancion(segArreglo arrNombreCancion[], int arrFrontera) {
+
+    for (int i = 0; i < arrFrontera; i++) {
+        arrNombreCancion[i].nroCancion = -1;
+        arrNombreCancion[i].interprete = ' ';
+        arrNombreCancion[i].nombreCancion = ' ';
+        arrNombreCancion[i].duracion = -1;
+        arrNombreCancion[i].anio = ' ';
+        arrNombreCancion[i].generos = ' ';
+        arrNombreCancion[i].reproducciones = 0;
+    }
+}
+
+// procedimiento que ordena un arreglo por un criterio, en este caso por razonSocial;
+void ordArrNombreCancion(Canciones arrCanciones[], segArreglo arrNombreCancion[], int arrFrontera) {
+
+    for (int i = 0; i < arrFrontera; i++) {
+        int j = 0;
+
+        while ((j < arrFrontera) && (arrNombreCancion[j].nombreCancion != " ") && (arrNombreCancion[j].nombreCancion < arrCanciones[i].obtenerNombreCancion()))
+            j++;
+
+        if (arrNombreCancion[j].nombreCancion != " ") {
+            for (int f = arrFrontera - 1; f > j; f--) {
+                arrNombreCancion[f] = arrNombreCancion[f - 1];
+            }
+        }
+
+        arrNombreCancion[j].nroCancion = arrCanciones[i].obtenerNroCancion();
+        arrNombreCancion[j].interprete = arrCanciones[i].obtenerInterprete();
+        arrNombreCancion[j].nombreCancion = arrCanciones[i].obtenerNombreCancion();
+        arrNombreCancion[j].duracion = arrCanciones[i].obtenerDuracion();
+        arrNombreCancion[j].anio = arrCanciones[i].obtenerAnio();
+        arrNombreCancion[j].generos = arrCanciones[i].obtenerGeneros();
+        arrNombreCancion[j].reproducciones = arrCanciones[i].obtenerReproducciones();
+    }
+}
+
+// procedimiento que realiza busqueda binaria en un arreglo;
+void busquedaBinaria(segArreglo arrNombreCancion[], string nombreCancion, int arrFrontera, segArreglo& result) {
+
+    int min = 0;
+    int max = arrFrontera - 1;
+    bool encontrado = false;
+
+    while ((min <= max) && (!encontrado))
+    {
+        if (arrNombreCancion[(min + max) / 2].nombreCancion == nombreCancion)
+            encontrado = true;
+        else {
+            if (arrNombreCancion[(min + max) / 2].nombreCancion < nombreCancion)
+                min = ((min + max) / 2) + 1;
+            else
+                max = ((min + max) / 2) - 1;
+        }
+    }
+
+    if (encontrado) {
+        result.nroCancion = arrNombreCancion[(min + max) / 2].nroCancion;
+        result.interprete = arrNombreCancion[(min + max) / 2].interprete;
+        result.duracion = arrNombreCancion[(min + max) / 2].duracion;
+        result.anio = arrNombreCancion[(min + max) / 2].anio;
+        result.generos = arrNombreCancion[(min + max) / 2].generos;
+        result.reproducciones = arrNombreCancion[(min + max) / 2].reproducciones;
+    }
+
+}
+
+// procedimiento dedicado a mostrar un menu para elegir una opcion a realizar;
+void showMenu() {
+
+    cout << endl;
+    cout << "-----------Elija la opcion a realizar.-----------" << endl;
+    cout << "1. Mostrar el listado completo de canciones." << endl;
+    cout << "2. Verificar si existe una cancion." << endl;
+    cout << endl;
+}
+
+// procedimiento con un switch que corresponde a realizar la opcion ingresada por teclado;
+void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrFrontera) {
+
+    char seguir;
+    char nombreCancion[50];
+    char aux[1];
+    int opcion = 0;
+
+    while (opcion != -1) {
+        showMenu();
+        seguir = 's';
+        cout << "   Seleccione una opcion. Si quiere terminar, ingrese -1: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1: {
+                imprimeArr(arrCanciones, arrFrontera);
+                break;
+            }
+            case 2: {
+                segArreglo resultado;
+                inicArregloNombreCancion(arrNombreCancion, arrFrontera);
+                ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
+
+                while ((seguir == 's') || (seguir == 'S')) {
+                    resultado.nroCancion = 0;
+                    cout << "   Elija una cancion de la lista: ";
+                    cin.getline(aux, 1);
+                    cin.getline(nombreCancion, 50);
+
+                    busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera, resultado);
+
+                    if (resultado.nroCancion != 0) {
+                        cout << endl;
+                        cout << "-----------------------------------------------------\n";
+                        cout << "La cancion ingresada existe: " << resultado.nroCancion << endl;
+                        cout << "Interprete:     " << resultado.interprete << endl;
+                        cout << "Duracion:       " << resultado.duracion << endl;
+                        cout << "Anio:            " << resultado.anio << endl;
+                        cout << "Generos:        " << resultado.generos << endl;
+                        cout << "Reproducciones: " << resultado.reproducciones << endl;
+                        cout << "-----------------------------------------------------\n";
+                    }
+                    else
+                    {
+                        cout << endl;
+                        cout << "-----------------------------------------------------\n";
+                        cout << "La cancion ingresada no se encuentra en la lista." << endl;
+                        cout << "-----------------------------------------------------\n";
+                    }
+                    cout << endl;
+                    cout << "    Desea ingresar otra cancion?. Su respuesta (s/S): ";
+                    cin >> seguir;
+                    if ((seguir != 's') && (seguir != 'S'))
+                        cout << "    Muchas gracias!" << endl;
+                }
+                break;
+            }
+            default: {
+                if (opcion != -1)
+                    cout << "   La opcion ingresada es incorrecta...\n";
+                break;
+            }
+        }
+    }
+}
+
+int main()
+{
+    setlocale(LC_ALL, ""); //asegurarse que el archivo de texto fue guardado como Ansi y no como Unicode
+
+    int arrFrontera;
+    Canciones* arrCanciones = procesar_archivo_entrada("canciones.csv", arrFrontera);
+    auto* arrNombreCancion = new segArreglo[arrFrontera];
+
+    opciones(arrCanciones, arrNombreCancion, arrFrontera);
+
+    delete[] arrCanciones;
+    delete[] arrNombreCancion;
+    return 0;
+}
