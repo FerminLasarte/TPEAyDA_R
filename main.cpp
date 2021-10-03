@@ -281,7 +281,6 @@ int main()
     Canciones* arrCanciones = procesar_archivo_entrada("canciones.csv", arrFrontera);
     auto* arrNombreCancion = new segArreglo[arrFrontera];
     opciones(arrCanciones, arrNombreCancion, arrFrontera);
-    cout << "saludo" << endl;
     delete[] arrCanciones;
     delete[] arrNombreCancion;
     return 0;
