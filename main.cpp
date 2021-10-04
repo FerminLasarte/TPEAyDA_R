@@ -2,8 +2,6 @@
 #include <fstream>
 #include <string>
 #include <clocale>
-#include <cstring>
-#include <cstdio>
 #include "Canciones.h"
 #include "Lista.h"
 
@@ -105,19 +103,19 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
         }
         return arrCanciones;
     }
-    return 0;
+    return nullptr;
 }
 
 // struct para el arreglo ordenado por nombreCancion para asi realizar busqueda binaria;
 struct segArreglo
 {
-    unsigned int nroCancion;
+    unsigned int nroCancion{};
     string interprete;
     string nombreCancion;
-    unsigned int duracion;
+    unsigned int duracion{};
     string anio;
     string generos;
-    unsigned int reproducciones;
+    unsigned int reproducciones{};
 };
 
 // procedimiento que imprime un arreglo de principio a fin de longitud n;
@@ -168,7 +166,7 @@ void ordArrNombreCancion(Canciones arrCanciones[], segArreglo arrNombreCancion[]
 }
 
 // procedimiento que realiza busqueda binaria en un arreglo;
-void busquedaBinaria(segArreglo arrNombreCancion[], string nombreCancion, int arrFrontera, segArreglo& result) {
+void busquedaBinaria(segArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera, segArreglo& result) {
 
     int min = 0;
     int max = arrFrontera - 1;
@@ -197,7 +195,7 @@ void busquedaBinaria(segArreglo arrNombreCancion[], string nombreCancion, int ar
 }
 
 // funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
-Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, string minAnio, string maxAnio) {
+Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const string& minAnio, const string& maxAnio) {
 
     Lista listaCanciones;
 
@@ -303,7 +301,7 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
                     Lista auxLista = recorrerEntreRangos(arrCanciones, arrFrontera, minAnio, maxAnio);
                     auxLista.volverInicio();
 
-                    while (auxLista.publico != NULL) {
+                    while (auxLista.publico != nullptr) {
                         auxLista.publico->dato->imprimeDatos();
                         auxLista.avanzar();
                     }
