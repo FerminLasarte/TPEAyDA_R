@@ -259,7 +259,7 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
                         cout << "La cancion ingresada existe: " << resultado.nroCancion << endl;
                         cout << "Interprete:     " << resultado.interprete << endl;
                         cout << "Duracion:       " << resultado.duracion << endl;
-                        cout << "Anio:            " << resultado.anio << endl;
+                        cout << "Anio:           " << resultado.anio << endl;
                         cout << "Generos:        " << resultado.generos << endl;
                         cout << "Reproducciones: " << resultado.reproducciones << endl;
                         cout << "-----------------------------------------------------\n";
@@ -328,11 +328,13 @@ int main()
 {
     setlocale(LC_ALL, ""); //asegurarse que el archivo de texto fue guardado como Ansi y no como Unicode
 
-    Lista listaCanciones;
     int arrFrontera;
+
+    Lista listaCanciones;
     Canciones* arrCanciones = procesar_archivo_entrada("canciones.csv", arrFrontera);
     auto* arrNombreCancion = new segArreglo[arrFrontera];
     opciones(arrCanciones, arrNombreCancion, arrFrontera);
+
     delete[] arrCanciones;
     delete[] arrNombreCancion;
     return 0;
