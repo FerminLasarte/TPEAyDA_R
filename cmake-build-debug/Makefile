@@ -152,6 +152,30 @@ Canciones.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Canciones.cpp.s
 .PHONY : Canciones.cpp.s
 
+Lista.obj: Lista.cpp.obj
+.PHONY : Lista.obj
+
+# target to build an object file
+Lista.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Lista.cpp.obj
+.PHONY : Lista.cpp.obj
+
+Lista.i: Lista.cpp.i
+.PHONY : Lista.i
+
+# target to preprocess a source file
+Lista.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Lista.cpp.i
+.PHONY : Lista.cpp.i
+
+Lista.s: Lista.cpp.s
+.PHONY : Lista.s
+
+# target to generate assembly for a file
+Lista.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Lista.cpp.s
+.PHONY : Lista.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -188,6 +212,9 @@ help:
 	@echo ... Canciones.obj
 	@echo ... Canciones.i
 	@echo ... Canciones.s
+	@echo ... Lista.obj
+	@echo ... Lista.i
+	@echo ... Lista.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

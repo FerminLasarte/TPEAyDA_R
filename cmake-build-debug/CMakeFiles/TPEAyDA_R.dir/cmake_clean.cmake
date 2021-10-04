@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/TPEAyDA_R.dir/Canciones.cpp.obj"
+  "CMakeFiles/TPEAyDA_R.dir/Lista.cpp.obj"
   "CMakeFiles/TPEAyDA_R.dir/main.cpp.obj"
   "TPEAyDA_R.exe"
   "TPEAyDA_R.exe.manifest"

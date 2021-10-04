@@ -5,6 +5,7 @@
 #include <cstring>
 #include <cstdio>
 #include "Canciones.h"
+#include "Lista.h"
 
 using namespace std;
 
@@ -193,7 +194,20 @@ void busquedaBinaria(segArreglo arrNombreCancion[], string nombreCancion, int ar
         result.generos = arrNombreCancion[(min + max) / 2].generos;
         result.reproducciones = arrNombreCancion[(min + max) / 2].reproducciones;
     }
+}
 
+// funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
+Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, string minAnio, string maxAnio) {
+
+    Lista listaCanciones;
+
+    for (int i = 0; i < arrFrontera; i++)
+    {
+        if ((arrCanciones[i].obtenerAnio() >= minAnio) && (arrCanciones[i].obtenerAnio() <= maxAnio))
+            listaCanciones.insertarLista(arrCanciones[i]);
+    }
+    cout << "--------------------------------------------------\n";
+    return listaCanciones;
 }
 
 // procedimiento dedicado a mostrar un menu para elegir una opcion a realizar;
@@ -203,6 +217,7 @@ void showMenu() {
     cout << "-----------Elija la opcion a realizar.-----------" << endl;
     cout << "1. Mostrar el listado completo de canciones." << endl;
     cout << "2. Verificar si existe una cancion." << endl;
+    cout << "3. Listar todos las canciones lanzadas en algun rango de anios en particular" << endl;
     cout << endl;
 }
 
@@ -264,6 +279,42 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
                 }
                 break;
             }
+            case 3: {
+                while ((seguir == 's') || (seguir == 'S')) {
+
+                    string minAnio, maxAnio;
+
+                    cout << "   Ingrese dos valores como rangos de anios." << endl;
+                    cout << "   Anio Menor: ";
+                    cin >> minAnio;
+                    cout << "   Anio Mayor: ";
+                    cin >> maxAnio;
+                    cout << endl;
+
+                    while (minAnio > maxAnio)
+                    {
+                        cout << "   Datos ingresados incorrectos. Ingrese nuevamente." << endl;
+                        cout << "   Anio Menor: ";
+                        cin >> minAnio;
+                        cout << "   Anio Mayor: ";
+                        cin >> maxAnio;
+                    }
+
+                    Lista auxLista = recorrerEntreRangos(arrCanciones, arrFrontera, minAnio, maxAnio);
+                    auxLista.volverInicio();
+
+                    while (auxLista.publico != NULL) {
+                        auxLista.publico->dato->imprimeDatos();
+                        auxLista.avanzar();
+                    }
+                    cout << endl;
+                    cout << "   Desea ingresar otros rangos de anios?. Su respuesta (s/S): ";
+                    cin >> seguir;
+                    if ((seguir != 's') && (seguir != 'S'))
+                        cout << "   Muchas gracias!" << endl;
+                }
+                break;
+            }
             default: {
                 if (opcion != -1)
                     cout << "   La opcion ingresada es incorrecta...\n";
@@ -277,6 +328,7 @@ int main()
 {
     setlocale(LC_ALL, ""); //asegurarse que el archivo de texto fue guardado como Ansi y no como Unicode
 
+    Lista listaCanciones;
     int arrFrontera;
     Canciones* arrCanciones = procesar_archivo_entrada("canciones.csv", arrFrontera);
     auto* arrNombreCancion = new segArreglo[arrFrontera];

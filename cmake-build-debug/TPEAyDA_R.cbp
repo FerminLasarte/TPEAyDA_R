@@ -86,6 +86,12 @@
 		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h">
 			<Option target="TPEAyDA_R"/>
 		</Unit>
+		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.cpp">
+			<Option target="TPEAyDA_R"/>
+		</Unit>
+		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h">
+			<Option target="TPEAyDA_R"/>
+		</Unit>
 		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/main.cpp">
 			<Option target="TPEAyDA_R"/>
 		</Unit>

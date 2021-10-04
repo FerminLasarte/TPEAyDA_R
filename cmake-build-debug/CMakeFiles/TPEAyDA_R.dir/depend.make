@@ -4,6 +4,11 @@
 CMakeFiles/TPEAyDA_R.dir/Canciones.cpp.obj: \
  ../Canciones.cpp \
  ../Canciones.h
+CMakeFiles/TPEAyDA_R.dir/Lista.cpp.obj: \
+ ../Canciones.h \
+ ../Lista.cpp \
+ ../Lista.h
 CMakeFiles/TPEAyDA_R.dir/main.cpp.obj: \
  ../Canciones.h \
+ ../Lista.h \
  ../main.cpp

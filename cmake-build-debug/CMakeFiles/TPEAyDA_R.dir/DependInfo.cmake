@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.cpp" "C:/Users/fermi/CLionProjects/TPEAyDA_R/cmake-build-debug/CMakeFiles/TPEAyDA_R.dir/Canciones.cpp.obj"
+  "C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.cpp" "C:/Users/fermi/CLionProjects/TPEAyDA_R/cmake-build-debug/CMakeFiles/TPEAyDA_R.dir/Lista.cpp.obj"
   "C:/Users/fermi/CLionProjects/TPEAyDA_R/main.cpp" "C:/Users/fermi/CLionProjects/TPEAyDA_R/cmake-build-debug/CMakeFiles/TPEAyDA_R.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
