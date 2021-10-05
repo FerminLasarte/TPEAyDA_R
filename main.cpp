@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <clocale>
+#include <cstdio>
+#include <cctype>
 #include "Canciones.h"
 #include "Lista.h"
 
