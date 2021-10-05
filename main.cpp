@@ -142,7 +142,7 @@ void inicArregloNombreCancion(segArreglo arrNombreCancion[], int arrFrontera) {
     }
 }
 
-// procedimiento que ordena un arreglo por un criterio, en este caso por razonSocial;
+// procedimiento que ordena un arreglo por un criterio, en este caso por nombreCancion;
 void ordArrNombreCancion(Canciones arrCanciones[], segArreglo arrNombreCancion[], int arrFrontera) {
 
     for (int i = 0; i < arrFrontera; i++) {
