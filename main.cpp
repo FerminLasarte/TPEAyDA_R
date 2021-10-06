@@ -217,7 +217,7 @@ void showMenu() {
     cout << "-----------Elija la opcion a realizar.-----------" << endl;
     cout << "1. Mostrar el listado completo de canciones." << endl;
     cout << "2. Verificar si existe una cancion." << endl;
-    cout << "3. Listar todos las canciones lanzadas en algun rango de anios en particular" << endl;
+    cout << "3. Listar todos las canciones lanzadas en algun rango de anios en particular." << endl;
     cout << endl;
 }
 
@@ -241,6 +241,8 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
                 break;
             }
             case 2: {
+                // faltan comodines.
+
                 segArreglo resultado;
                 inicArregloNombreCancion(arrNombreCancion, arrFrontera);
                 ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
@@ -303,10 +305,14 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
                     Lista auxLista = recorrerEntreRangos(arrCanciones, arrFrontera, minAnio, maxAnio);
                     auxLista.volverInicio();
 
-                    while (auxLista.publico != nullptr) {
-                        auxLista.publico->dato->imprimeDatos();
-                        auxLista.avanzar();
-                    }
+                    if (auxLista.publico == nullptr)
+                        cout << "   No se ha encontrado ninguna cancion entre el rango asignado." << endl;
+                    else
+                        while (auxLista.publico != nullptr) {
+                            auxLista.publico->dato->imprimeDatos();
+                            auxLista.avanzar();
+                        }
+
                     cout << endl;
                     cout << "   Desea ingresar otros rangos de anios?. Su respuesta (s/S): ";
                     cin >> seguir;
@@ -314,6 +320,12 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
                         cout << "   Muchas gracias!" << endl;
                 }
                 break;
+            }
+            case 4: {
+                while ((seguir == 's') || (seguir == 'S')) {
+
+                    // servicio generos
+                }
             }
             default: {
                 if (opcion != -1)
