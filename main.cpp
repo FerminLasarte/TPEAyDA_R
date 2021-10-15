@@ -7,6 +7,10 @@
 #include "Canciones.h"
 #include "Lista.h"
 
+// ARREGLAR RESULTADO SEGARREGLO. REPITE INFORMACION
+// ARREGLAR CARGADA DE CANCIONES AL ARREGLO. LISTA GENEROS MAL
+// COMODINES LIBRES
+
 using namespace std;
 
 /**
