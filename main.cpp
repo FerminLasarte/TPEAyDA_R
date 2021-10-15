@@ -9,6 +9,7 @@
 
 // ARREGLAR RESULTADO SEGARREGLO. REPITE INFORMACION
 // ARREGLAR CARGADA DE CANCIONES AL ARREGLO. LISTA GENEROS MAL
+// COMO LEER CANCIONES EN MINUSCULA
 // COMODINES LIBRES
 
 using namespace std;
@@ -172,7 +173,7 @@ void ordArrNombreCancion(Canciones arrCanciones[], segArreglo arrNombreCancion[]
 }
 
 // procedimiento que realiza busqueda binaria en un arreglo;
-void busquedaBinaria(segArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera, segArreglo& result) {
+void busquedaBinaria(segArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera, segArreglo*& result) {
 
     int min = 0;
     int max = arrFrontera - 1;
@@ -190,13 +191,15 @@ void busquedaBinaria(segArreglo arrNombreCancion[], const string& nombreCancion,
         }
     }
 
+    cout << "termino" << endl;
+
     if (encontrado) {
-        result.nroCancion = arrNombreCancion[(min + max) / 2].nroCancion;
-        result.interprete = arrNombreCancion[(min + max) / 2].interprete;
-        result.duracion = arrNombreCancion[(min + max) / 2].duracion;
-        result.anio = arrNombreCancion[(min + max) / 2].anio;
-        result.generos = arrNombreCancion[(min + max) / 2].generos;
-        result.reproducciones = arrNombreCancion[(min + max) / 2].reproducciones;
+        result->nroCancion = arrNombreCancion[(min + max) / 2].nroCancion;
+        result->interprete = arrNombreCancion[(min + max) / 2].interprete;
+        result->duracion = arrNombreCancion[(min + max) / 2].duracion;
+        result->anio = arrNombreCancion[(min + max) / 2].anio;
+        result->generos = arrNombreCancion[(min + max) / 2].generos;
+        result->reproducciones = arrNombreCancion[(min + max) / 2].reproducciones;
     }
 }
 
@@ -214,7 +217,7 @@ Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const stri
     return listaCanciones;
 }
 
-void leerGeneros(Canciones canciones) {
+/*void leerGeneros(Canciones canciones) {
 
     string generos = lst_generos.substr(1, lst_generos.size()-2);
     string listaGeneros[10];
@@ -226,7 +229,7 @@ void leerGeneros(Canciones canciones) {
         pos_inicial_generos = pos_final_generos + 1;
         nroGenero++;
     }
-}
+}*/
 
 // procedimiento dedicado a mostrar un menu para elegir una opcion a realizar;
 void showMenu() {
@@ -261,27 +264,27 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
             case 2: {
                 // faltan comodines.
 
-                segArreglo resultado;
+                segArreglo* resultado;
                 inicArregloNombreCancion(arrNombreCancion, arrFrontera);
                 ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
 
                 while ((seguir == 's') || (seguir == 'S')) {
-                    resultado.nroCancion = 0;
+                    //resultado.nroCancion = 0;
                     cout << "   Elija una cancion de la lista: ";
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
 
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera, resultado);
 
-                    if (resultado.nroCancion != 0) {
+                    if (resultado->nroCancion != 0) {
                         cout << endl;
                         cout << "-----------------------------------------------------\n";
-                        cout << "La cancion ingresada existe: " << resultado.nroCancion << endl;
-                        cout << "Interprete:     " << resultado.interprete << endl;
-                        cout << "Duracion:       " << resultado.duracion << endl;
-                        cout << "Anio:           " << resultado.anio << endl;
-                        cout << "Generos:        " << resultado.generos << endl;
-                        cout << "Reproducciones: " << resultado.reproducciones << endl;
+                        cout << "La cancion ingresada existe: " << resultado->nroCancion << endl;
+                        cout << "Interprete:     " << resultado->interprete << endl;
+                        cout << "Duracion:       " << resultado->duracion << endl;
+                        cout << "Anio:           " << resultado->anio << endl;
+                        cout << "Generos:        " << resultado->generos << endl;
+                        cout << "Reproducciones: " << resultado->reproducciones << endl;
                         cout << "-----------------------------------------------------\n";
                     }
                     else
