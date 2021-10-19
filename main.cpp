@@ -65,26 +65,19 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
             pos_inicial = pos_final + 1;
             pos_final = linea.find(',', pos_inicial);
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
+            string generos = lst_generos.substr(1, lst_generos.size()-2);
 
             //Sexta posición del separador ;
             pos_inicial = pos_final + 1;
             pos_final = linea.find(';', pos_inicial);
             int reproducciones = atoi(linea.substr(pos_inicial, pos_final - pos_inicial).c_str());
 
-            Canciones canciones(nroCancion, interprete, nombreCancion, duracion, anio, lst_generos, reproducciones);
+            Canciones canciones(nroCancion, interprete, nombreCancion, duracion, anio, generos, reproducciones);
             arrCanciones[i] = canciones;
             i++;
             nroCancion++;
 
-/*          cout << "   CANCION Nro             " << nroCancion << "--------------------------------------" << endl;
-            cout << "   ID:                     " << idCancion  << endl;
-            cout << "   INTERPRETE:             " << interprete << endl;
-            cout << "   NOMBRE CANCION:         " << nombreCancion << endl;
-            cout << "   DURACION:               " << duracion << endl;
-            cout << "   AÑO LANZAMIENTO:        " << anio << endl;
-            cout << "   GENEROS:                " << lst_generos << endl;
-            cout << "   CANT REPRODUCCIONES:    " << reproducciones << endl;
-
+/*
             //TO DO: Completar la lectura de los generos de la cancion
 
             //Desde esta posición hasta el final se encuentra un número variable de géneros de cada canción.
@@ -217,19 +210,23 @@ Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const stri
     return listaCanciones;
 }
 
-/*void leerGeneros(Canciones canciones) {
+Lista devuelveGeneros() {
 
-    string generos = lst_generos.substr(1, lst_generos.size()-2);
     string listaGeneros[10];
     int pos_inicial_generos = 0, pos_final_generos = 0;
     int nroGenero = 0;
+
     while (pos_final_generos != -1) {
         pos_final_generos = generos.find('|', pos_inicial_generos);
         listaGeneros[nroGenero] = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
         pos_inicial_generos = pos_final_generos + 1;
         nroGenero++;
     }
-}*/
+
+    for (int i=0; i<10; i++){
+        cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
+    }
+}
 
 // procedimiento dedicado a mostrar un menu para elegir una opcion a realizar;
 void showMenu() {
