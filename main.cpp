@@ -1,16 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 #include <clocale>
 #include <cstdio>
 #include <cctype>
 #include "Canciones.h"
 #include "Lista.h"
 
-// ARREGLAR RESULTADO SEGARREGLO. REPITE INFORMACION
 // ARREGLAR CARGADA DE CANCIONES AL ARREGLO. LISTA GENEROS MAL
 // COMO LEER CANCIONES EN MINUSCULA
 // COMODINES LIBRES
+// SOLUCIONAR MODULARIZACION BUSQUEDA BINARIA
 
 using namespace std;
 
@@ -166,7 +167,7 @@ void ordArrNombreCancion(Canciones arrCanciones[], tsegArreglo arrNombreCancion[
 }
 
 // procedimiento que realiza busqueda binaria en un arreglo;
-void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera, segArreglo*& result) {
+void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera) {
 
     int min = 0;
     int max = arrFrontera - 1;
@@ -184,16 +185,35 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
         }
     }
 
-    cout << "termino" << endl;
-
     if (encontrado) {
-        cout << "nro cancion: " << arrNombreCancion[(min + max) / 2].nroCancion << endl;
-        result->nroCancion = arrNombreCancion[(min + max) / 2].nroCancion;
-        result->interprete = arrNombreCancion[(min + max) / 2].interprete;
-        result->duracion = arrNombreCancion[(min + max) / 2].duracion;
-        result->anio = arrNombreCancion[(min + max) / 2].anio;
-        result->generos = arrNombreCancion[(min + max) / 2].generos;
-        result->reproducciones = arrNombreCancion[(min + max) / 2].reproducciones;
+        cout << endl;
+        cout << "-----------------------------------------------------\n";
+        cout << "La cancion ingresada existe: " << arrNombreCancion[(min + max) / 2].nroCancion << endl;
+        cout << "Interprete:     " << arrNombreCancion[(min + max) / 2].interprete << endl;
+        cout << "Duracion:       " << arrNombreCancion[(min + max) / 2].duracion << endl;
+        cout << "Anio:           " << arrNombreCancion[(min + max) / 2].anio << endl;
+        cout << "Generos:        " << arrNombreCancion[(min + max) / 2].generos << endl;
+        cout << "Reproducciones: " << arrNombreCancion[(min + max) / 2].reproducciones << endl;
+        cout << "-----------------------------------------------------\n";
+    }
+    else
+    {
+        cout << endl;
+        cout << "-----------------------------------------------------\n";
+        cout << "La cancion ingresada no se encuentra en la lista." << endl;
+        cout << "-----------------------------------------------------\n";
+    }
+}
+
+void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera) {
+
+    char arrAux[50];
+    string stringCancion = arrCanciones->obtenerNombreCancion();
+    strcpy(arrAux, stringCancion.c_str());
+
+    for (int i = 0; i < arrFrontera ; i++) {
+
+        char arrAux = stringCancion.toCharArray()
     }
 }
 
@@ -211,7 +231,7 @@ Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const stri
     return listaCanciones;
 }
 
-Lista devuelveGeneros() {
+/*Lista devuelveGeneros() {
 
     string listaGeneros[10];
     int pos_inicial_generos = 0, pos_final_generos = 0;
@@ -227,7 +247,7 @@ Lista devuelveGeneros() {
     for (int i=0; i<10; i++){
         cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
     }
-}
+}*/
 
 // procedimiento dedicado a mostrar un menu para elegir una opcion a realizar;
 void showMenu() {
@@ -262,36 +282,20 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
             case 2: {
                 // faltan comodines.
 
-                tsegArreglo* resultado;
                 inicArregloNombreCancion(arrNombreCancion, arrFrontera);
                 ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
 
                 while ((seguir == 's') || (seguir == 'S')) {
                     //resultado.nroCancion = 0;
                     cout << "   Elija una cancion de la lista: ";
+                    cout << "   Para utilizar comodines, ingrese un '*' o un '?' para buscar por palabras o caracteres respectivamente.";
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
 
-                    busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera, resultado);
+                    if (nombreCancion[1] == '*')
+                        buscarEnArr(arrCanciones);
+                    busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
-                    if (resultado->nroCancion != 0) {
-                        cout << endl;
-                        cout << "-----------------------------------------------------\n";
-                        cout << "La cancion ingresada existe: " << resultado->nroCancion << endl;
-                        cout << "Interprete:     " << resultado->interprete << endl;
-                        cout << "Duracion:       " << resultado->duracion << endl;
-                        cout << "Anio:           " << resultado->anio << endl;
-                        cout << "Generos:        " << resultado->generos << endl;
-                        cout << "Reproducciones: " << resultado->reproducciones << endl;
-                        cout << "-----------------------------------------------------\n";
-                    }
-                    else
-                    {
-                        cout << endl;
-                        cout << "-----------------------------------------------------\n";
-                        cout << "La cancion ingresada no se encuentra en la lista." << endl;
-                        cout << "-----------------------------------------------------\n";
-                    }
                     cout << endl;
                     cout << "    Desea ingresar otra cancion?. Su respuesta (s/S): ";
                     cin >> seguir;

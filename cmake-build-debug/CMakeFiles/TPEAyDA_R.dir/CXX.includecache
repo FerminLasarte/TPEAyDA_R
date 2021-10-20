@@ -6,23 +6,9 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.cpp
-iostream
--
-string
--
-Canciones.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
-
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
 iostream
 -
-
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.cpp
-string
--
-Lista.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 iostream
