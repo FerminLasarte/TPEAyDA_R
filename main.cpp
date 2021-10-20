@@ -107,7 +107,7 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
 }
 
 // struct para el arreglo ordenado por nombreCancion para asi realizar busqueda binaria;
-struct segArreglo
+struct tsegArreglo
 {
     unsigned int nroCancion{};
     string interprete;
@@ -127,7 +127,7 @@ void imprimeArr(Canciones arrCanciones[], int& arrFrontera) {
 }
 
 // procedimiento que inicializa un arreglo de principio a fin de longitud n;
-void inicArregloNombreCancion(segArreglo arrNombreCancion[], int arrFrontera) {
+void inicArregloNombreCancion(tsegArreglo arrNombreCancion[], int arrFrontera) {
 
     for (int i = 0; i < arrFrontera; i++) {
         arrNombreCancion[i].nroCancion = -1;
@@ -141,7 +141,7 @@ void inicArregloNombreCancion(segArreglo arrNombreCancion[], int arrFrontera) {
 }
 
 // procedimiento que ordena un arreglo por un criterio, en este caso por nombreCancion;
-void ordArrNombreCancion(Canciones arrCanciones[], segArreglo arrNombreCancion[], int arrFrontera) {
+void ordArrNombreCancion(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int arrFrontera) {
 
     for (int i = 0; i < arrFrontera; i++) {
         int j = 0;
@@ -166,7 +166,7 @@ void ordArrNombreCancion(Canciones arrCanciones[], segArreglo arrNombreCancion[]
 }
 
 // procedimiento que realiza busqueda binaria en un arreglo;
-void busquedaBinaria(segArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera, segArreglo*& result) {
+void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion, int arrFrontera, segArreglo*& result) {
 
     int min = 0;
     int max = arrFrontera - 1;
@@ -187,6 +187,7 @@ void busquedaBinaria(segArreglo arrNombreCancion[], const string& nombreCancion,
     cout << "termino" << endl;
 
     if (encontrado) {
+        cout << "nro cancion: " << arrNombreCancion[(min + max) / 2].nroCancion << endl;
         result->nroCancion = arrNombreCancion[(min + max) / 2].nroCancion;
         result->interprete = arrNombreCancion[(min + max) / 2].interprete;
         result->duracion = arrNombreCancion[(min + max) / 2].duracion;
@@ -240,7 +241,7 @@ void showMenu() {
 }
 
 // procedimiento con un switch que corresponde a realizar la opcion ingresada por teclado;
-void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrFrontera) {
+void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arrFrontera) {
 
     char seguir;
     char nombreCancion[50];
@@ -261,7 +262,7 @@ void opciones(Canciones arrCanciones[], segArreglo arrNombreCancion[], int& arrF
             case 2: {
                 // faltan comodines.
 
-                segArreglo* resultado;
+                tsegArreglo* resultado;
                 inicArregloNombreCancion(arrNombreCancion, arrFrontera);
                 ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
 
@@ -362,7 +363,7 @@ int main()
 
     Lista listaCanciones;
     Canciones* arrCanciones = procesar_archivo_entrada("canciones.csv", arrFrontera);
-    auto* arrNombreCancion = new segArreglo[arrFrontera];
+    auto* arrNombreCancion = new tsegArreglo[arrFrontera];
     opciones(arrCanciones, arrNombreCancion, arrFrontera);
 
     delete[] arrCanciones;
