@@ -6,10 +6,10 @@ using namespace std;
 
 
 Canciones::Canciones() {
-
+    // comentario
 }
 
-Canciones::Canciones(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, string generos, unsigned int reproducciones) {
+Canciones::Canciones(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, string generos[], unsigned int reproducciones) {
 
     this->nroCancion = nroCancion;
     this->interprete = interprete;

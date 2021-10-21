@@ -13,12 +13,12 @@ private:
     string nombreCancion;
     unsigned int duracion;
     string anio;
-    string generos;
+    string generos[10];
     unsigned int reproducciones;
 
 public:
     Canciones();
-    Canciones(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, string generos, unsigned int reproducciones);
+    Canciones(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, string generos[], unsigned int reproducciones);
     virtual ~Canciones();
 
     unsigned int obtenerNroCancion() const;

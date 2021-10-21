@@ -67,13 +67,26 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
             pos_final = linea.find(',', pos_inicial);
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
             string generos = lst_generos.substr(1, lst_generos.size()-2);
+            string listaGeneros[10];
+            int pos_inicial_generos = 0, pos_final_generos = 0;
+            int nroGenero = 0;
+            while (pos_final_generos != -1) {
+                pos_final_generos = generos.find('|', pos_inicial_generos);
+                listaGeneros[nroGenero] = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
+                pos_inicial_generos = pos_final_generos + 1;
+                nroGenero++;
+            }
+
+            for (int i=0; i<10; i++){
+                cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
+            }
 
             //Sexta posición del separador ;
             pos_inicial = pos_final + 1;
             pos_final = linea.find(';', pos_inicial);
             int reproducciones = atoi(linea.substr(pos_inicial, pos_final - pos_inicial).c_str());
 
-            Canciones canciones(nroCancion, interprete, nombreCancion, duracion, anio, generos, reproducciones);
+            Canciones canciones(nroCancion, interprete, nombreCancion, duracion, anio, listaGeneros, reproducciones);
             arrCanciones[i] = canciones;
             i++;
             nroCancion++;
@@ -293,7 +306,7 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     cin.getline(nombreCancion, 50);
 
                     if (nombreCancion[1] == '*')
-                        buscarEnArr(arrCanciones);
+                        buscarEnArr(arrCanciones, nombreCancion, arrFrontera);
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
                     cout << endl;
