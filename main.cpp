@@ -8,7 +8,6 @@
 #include "Canciones.h"
 #include "Lista.h"
 
-// ARREGLAR CARGADA DE CANCIONES AL ARREGLO. LISTA GENEROS MAL
 // COMO LEER CANCIONES EN MINUSCULA
 // COMODINES LIBRES
 // SOLUCIONAR MODULARIZACION BUSQUEDA BINARIA
@@ -87,30 +86,6 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
             arrCanciones[i] = canciones;
             i++;
             nroCancion++;
-
-/*
-            //TO DO: Completar la lectura de los generos de la cancion
-
-            //Desde esta posición hasta el final se encuentra un número variable de géneros de cada canción.
-            //no tomo en cuenta los corchetes
-            string generos = lst_generos.substr(1, lst_generos.size()-2);
-
-
-            // el siguiente código de prueba separa los diferentes géneros en un arreglo de 10 posiciones
-            string listaGeneros[10];
-            int pos_inicial_generos = 0, pos_final_generos = 0;
-            int nroGenero = 0;
-            while (pos_final_generos != -1) {
-                pos_final_generos = generos.find('|', pos_inicial_generos);
-                listaGeneros[nroGenero] = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
-                pos_inicial_generos = pos_final_generos + 1;
-                nroGenero++;
-            }
-
-            for (int i=0; i<10; i++){
-                cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
-            }
-*/
         }
         return arrCanciones;
     }
@@ -219,8 +194,9 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
         cout << "-----------------------------------------------------\n";
     }
 }
-// POSIBLES SOLUCIONES ENCUENTRA SECUENCIA PARA COMODINES SERVICIO 1
-/*void encuentraSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, bool found) {
+
+/*// POSIBLES SOLUCIONES ENCUENTRA SECUENCIA PARA COMODINES SERVICIO 1
+void encuentraSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, int inicSec, bool found) {
 
     for (int i = 0; i <= arrFrontera; i++) {
         if (arrCanciones[inicSec + i - 1] != cancionUser[i])
@@ -234,7 +210,7 @@ void buscarSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, i
     found = false;
 
     while ((inicSec <= arrFrontera) && (!found)) {
-        encuentraSec(arrCanciones, cancionUser, arrFrontera, found);
+        encuentraSec(arrCanciones, cancionUser, arrFrontera, inicSec, found);
         if (!found)
             inicSec++;
     }
@@ -245,9 +221,6 @@ void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera)
     char arrAux[50];
     string stringCancion = arrCanciones->obtenerNombreCancion();
     strcpy(arrAux, stringCancion.c_str());
-
-
-
 }*/
 
 // funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
