@@ -313,7 +313,7 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
 
                     if (nombreCancion[1] == '?')
                         buscarEnArrChar();
-                    
+
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
                     cout << endl;
