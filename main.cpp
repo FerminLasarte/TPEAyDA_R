@@ -219,17 +219,35 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
         cout << "-----------------------------------------------------\n";
     }
 }
+// POSIBLES SOLUCIONES ENCUENTRA SECUENCIA PARA COMODINES SERVICIO 1
+/*void encuentraSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, bool found) {
 
-/*void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera) {
+    for (int i = 0; i <= arrFrontera; i++) {
+        if (arrCanciones[inicSec + i - 1] != cancionUser[i])
+            found = false;
+    }
+}
+
+void buscarSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, int inicSec, bool found) {
+
+    inicSec = 1;
+    found = false;
+
+    while ((inicSec <= arrFrontera) && (!found)) {
+        encuentraSec(arrCanciones, cancionUser, arrFrontera, found);
+        if (!found)
+            inicSec++;
+    }
+}
+
+void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera) {
 
     char arrAux[50];
     string stringCancion = arrCanciones->obtenerNombreCancion();
     strcpy(arrAux, stringCancion.c_str());
 
-    for (int i = 0; i < arrFrontera ; i++) {
 
-        char arrAux = stringCancion.toCharArray()
-    }
+
 }*/
 
 // funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
@@ -245,24 +263,6 @@ Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const stri
     cout << "--------------------------------------------------\n";
     return listaCanciones;
 }
-
-/*Lista devuelveGeneros() {
-
-    string listaGeneros[10];
-    int pos_inicial_generos = 0, pos_final_generos = 0;
-    int nroGenero = 0;
-
-    while (pos_final_generos != -1) {
-        pos_final_generos = generos.find('|', pos_inicial_generos);
-        listaGeneros[nroGenero] = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
-        pos_inicial_generos = pos_final_generos + 1;
-        nroGenero++;
-    }
-
-    for (int i=0; i<10; i++){
-        cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
-    }
-}*/
 
 // procedimiento dedicado a mostrar un menu para elegir una opcion a realizar;
 void showMenu() {
@@ -308,8 +308,8 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
 
-                    //if (nombreCancion[1] == '*')
-                        //buscarEnArr(arrCanciones, nombreCancion, arrFrontera);
+                    if (nombreCancion[1] == '*')
+                        buscarEnArr(arrCanciones, nombreCancion, arrFrontera);
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
                     cout << endl;
