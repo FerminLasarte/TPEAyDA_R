@@ -281,11 +281,11 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
 
-                    if (nombreCancion[1] == '*')
+                    /*if (nombreCancion[1] == '*')
                         buscarEnArrWord(arrCanciones, nombreCancion, arrFrontera);
 
                     if (nombreCancion[1] == '?')
-                        buscarEnArrChar();
+                        buscarEnArrChar();*/
 
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
