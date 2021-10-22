@@ -26,7 +26,7 @@ public:
     string obtenerNombreCancion() const;
     unsigned int obtenerDuracion() const;
     string obtenerAnio() const;
-    string obtenerGeneros() const;
+    string obtenerGeneros(int i) const;
     unsigned int obtenerReproducciones() const;
 
     void imprimeDatos();

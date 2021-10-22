@@ -66,6 +66,7 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
             pos_inicial = pos_final + 1;
             pos_final = linea.find(',', pos_inicial);
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
+
             string generos = lst_generos.substr(1, lst_generos.size()-2);
             string listaGeneros[10];
             int pos_inicial_generos = 0, pos_final_generos = 0;
@@ -75,10 +76,6 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
                 listaGeneros[nroGenero] = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
                 pos_inicial_generos = pos_final_generos + 1;
                 nroGenero++;
-            }
-
-            for (int i=0; i<10; i++){
-                cout << "   GENERO " <<i<<": " << listaGeneros[i] <<endl;
             }
 
             //Sexta posición del separador ;
@@ -128,7 +125,7 @@ struct tsegArreglo
     string nombreCancion;
     unsigned int duracion{};
     string anio;
-    string generos;
+    string generos[10];
     unsigned int reproducciones{};
 };
 
@@ -149,7 +146,8 @@ void inicArregloNombreCancion(tsegArreglo arrNombreCancion[], int arrFrontera) {
         arrNombreCancion[i].nombreCancion = ' ';
         arrNombreCancion[i].duracion = -1;
         arrNombreCancion[i].anio = ' ';
-        arrNombreCancion[i].generos = ' ';
+        for (int n = 0; n < 10; n++)
+            arrNombreCancion[n].generos[n] = ' ';
         arrNombreCancion[i].reproducciones = 0;
     }
 }
@@ -174,7 +172,8 @@ void ordArrNombreCancion(Canciones arrCanciones[], tsegArreglo arrNombreCancion[
         arrNombreCancion[j].nombreCancion = arrCanciones[i].obtenerNombreCancion();
         arrNombreCancion[j].duracion = arrCanciones[i].obtenerDuracion();
         arrNombreCancion[j].anio = arrCanciones[i].obtenerAnio();
-        arrNombreCancion[j].generos = arrCanciones[i].obtenerGeneros();
+        for (int n = 0; n < 10; n++)
+            arrNombreCancion[j].generos[n] = arrCanciones[n].obtenerGeneros(n); //error por arreglos de generos.
         arrNombreCancion[j].reproducciones = arrCanciones[i].obtenerReproducciones();
     }
 }
@@ -205,7 +204,10 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
         cout << "Interprete:     " << arrNombreCancion[(min + max) / 2].interprete << endl;
         cout << "Duracion:       " << arrNombreCancion[(min + max) / 2].duracion << endl;
         cout << "Anio:           " << arrNombreCancion[(min + max) / 2].anio << endl;
-        cout << "Generos:        " << arrNombreCancion[(min + max) / 2].generos << endl;
+        cout << "Generos:        ";
+        for (int i = 0; i < 10; i++)
+            cout << arrNombreCancion[(min + max) / 2].generos[i] << " ";
+        cout << endl;
         cout << "Reproducciones: " << arrNombreCancion[(min + max) / 2].reproducciones << endl;
         cout << "-----------------------------------------------------\n";
     }
@@ -218,7 +220,7 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
     }
 }
 
-void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera) {
+/*void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera) {
 
     char arrAux[50];
     string stringCancion = arrCanciones->obtenerNombreCancion();
@@ -228,7 +230,7 @@ void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera)
 
         char arrAux = stringCancion.toCharArray()
     }
-}
+}*/
 
 // funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
 Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const string& minAnio, const string& maxAnio) {
@@ -286,6 +288,7 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
         seguir = 's';
         cout << "   Seleccione una opcion. Si quiere terminar, ingrese -1: ";
         cin >> opcion;
+        cout << endl;
 
         switch (opcion) {
             case 1: {
@@ -299,14 +302,14 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                 ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
 
                 while ((seguir == 's') || (seguir == 'S')) {
-                    //resultado.nroCancion = 0;
-                    cout << "   Elija una cancion de la lista: ";
-                    cout << "   Para utilizar comodines, ingrese un '*' o un '?' para buscar por palabras o caracteres respectivamente.";
+                    cout << "   Elija una cancion de la lista. " << endl;
+                    cout << "   Para utilizar comodines, ingrese un '*' o un '?' para buscar por palabras o caracteres respectivamente." << endl;
+                    cout << "   Nombre de la cancion: ";
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
 
-                    if (nombreCancion[1] == '*')
-                        buscarEnArr(arrCanciones, nombreCancion, arrFrontera);
+                    //if (nombreCancion[1] == '*')
+                        //buscarEnArr(arrCanciones, nombreCancion, arrFrontera);
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
                     cout << endl;

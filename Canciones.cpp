@@ -16,7 +16,8 @@ Canciones::Canciones(unsigned int nroCancion, string interprete, string nombreCa
     this->nombreCancion = nombreCancion;
     this->duracion = duracion;
     this->anio = anio;
-    this->generos = generos;
+    for (int i = 0; i < 10; i++)
+        this->generos[i] = generos[i];
     this->reproducciones = reproducciones;
 }
 
@@ -44,8 +45,10 @@ string Canciones::obtenerAnio() const {
     return anio;
 }
 
-string Canciones::obtenerGeneros() const {
-    return generos;
+string Canciones::obtenerGeneros(int i) const {
+    if ((i >= 0) && (i<=10))
+        return generos[i];
+    else return "genero invalido";
 }
 
 unsigned int Canciones::obtenerReproducciones() const {
@@ -58,8 +61,11 @@ void Canciones::imprimeDatos()
     cout << " Interprete:           " << this->interprete << endl;
     cout << " Nombre de la Cancion: " << this->nombreCancion << endl;
     cout << " Duracion:             " << this->duracion << endl;
-    cout << " Año de Lanzamiento:   " << this->anio << endl;
-    cout << " Generos:              " << this->generos << endl;
+    cout << " Anio de Lanzamiento:  " << this->anio << endl;
+    cout << " Generos:              ";
+    for (int i = 0; i < 10; i++)
+         cout << this->generos[i] << " ";
+    cout << endl;
     cout << " Reproducciones        " << this->reproducciones << endl;
     cout << "--------------------------------------------------\n";
 }
