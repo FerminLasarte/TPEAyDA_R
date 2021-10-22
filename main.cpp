@@ -309,7 +309,11 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     cin.getline(nombreCancion, 50);
 
                     if (nombreCancion[1] == '*')
-                        buscarEnArr(arrCanciones, nombreCancion, arrFrontera);
+                        buscarEnArrWord(arrCanciones, nombreCancion, arrFrontera);
+
+                    if (nombreCancion[1] == '?')
+                        buscarEnArrChar();
+                    
                     busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
                     cout << endl;
