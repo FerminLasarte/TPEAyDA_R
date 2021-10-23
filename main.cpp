@@ -195,33 +195,41 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
     }
 }
 
-/*// POSIBLES SOLUCIONES ENCUENTRA SECUENCIA PARA COMODINES SERVICIO 1
-void encuentraSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, int inicSec, bool found) {
+// POSIBLES SOLUCIONES ENCUENTRA SECUENCIA PARA COMODINES SERVICIO 1
+void encuentraSec(char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, bool& found) {
 
+    found = true;
     for (int i = 0; i <= arrFrontera; i++) {
-        if (arrCanciones[inicSec + i - 1] != cancionUser[i])
+        if (arrCharCancion[inicSec + i - 1] != cancionUser[i])
             found = false;
     }
 }
 
-void buscarSec(Canciones arrCanciones[], char cancionUser[], int& arrFrontera, int inicSec, bool found) {
+void buscarSec(char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, bool& found) {
 
     inicSec = 1;
     found = false;
 
     while ((inicSec <= arrFrontera) && (!found)) {
-        encuentraSec(arrCanciones, cancionUser, arrFrontera, inicSec, found);
+        encuentraSec(cancionUser, arrCharCancion, arrFrontera, inicSec, found);
         if (!found)
             inicSec++;
     }
 }
 
-void buscarEnArr(Canciones arrCanciones[], char cancionUser[], int& arrFrontera) {
+char stringToCharArr(Canciones arrCanciones[], char arrCharCancion[], int& arrFrontera) {
 
-    char arrAux[50];
     string stringCancion = arrCanciones->obtenerNombreCancion();
-    strcpy(arrAux, stringCancion.c_str());
-}*/
+    strcpy(arrCharCancion, stringCancion.c_str());
+
+    return arrCharCancion[50];
+}
+
+void buscarEnArrWord(Canciones arrCanciones[], char arrCharCancion[], char cancionUser[], int inicSec, bool found, int& arrFrontera) {
+
+    stringToCharArr(arrCanciones, arrCharCancion, arrFrontera);
+    buscarSec(cancionUser, arrCharCancion, arrFrontera, inicSec, found);
+}
 
 // funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
 Lista recorrerEntreRangos(Canciones arrCanciones[], int& arrFrontera, const string& minAnio, const string& maxAnio) {
@@ -280,6 +288,11 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     cout << "   Nombre de la cancion: ";
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
+                    int inicSec;
+                    bool found;
+                    char arrCharCancion[50];
+
+                    buscarEnArrWord(arrCanciones, arrCharCancion, nombreCancion, inicSec, found, arrFrontera);
 
                     /*if (nombreCancion[1] == '*')
                         buscarEnArrWord(arrCanciones, nombreCancion, arrFrontera);
@@ -287,7 +300,7 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     if (nombreCancion[1] == '?')
                         buscarEnArrChar();*/
 
-                    busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
+                    //busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
 
                     cout << endl;
                     cout << "    Desea ingresar otra cancion?. Su respuesta (s/S): ";
