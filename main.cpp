@@ -148,7 +148,7 @@ void ordArrNombreCancion(Canciones arrCanciones[], tsegArreglo arrNombreCancion[
         arrNombreCancion[j].duracion = arrCanciones[i].obtenerDuracion();
         arrNombreCancion[j].anio = arrCanciones[i].obtenerAnio();
         for (int n = 0; n < 10; n++)
-            arrNombreCancion[j].generos[n] = arrCanciones[n].obtenerGeneros(n); //error por arreglos de generos.
+            arrNombreCancion[j].generos[n] = arrCanciones[n].obtenerGeneros(n);
         arrNombreCancion[j].reproducciones = arrCanciones[i].obtenerReproducciones();
     }
 }
@@ -292,12 +292,10 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     bool found;
                     char arrCharCancion[50];
 
-                    buscarEnArrWord(arrCanciones, arrCharCancion, nombreCancion, inicSec, found, arrFrontera);
+                    if (nombreCancion[1] == '*')
+                        buscarEnArrWord(arrCanciones, arrCharCancion, nombreCancion, inicSec, found, arrFrontera);
 
-                    /*if (nombreCancion[1] == '*')
-                        buscarEnArrWord(arrCanciones, nombreCancion, arrFrontera);
-
-                    if (nombreCancion[1] == '?')
+                    /*if (nombreCancion[1] == '?')
                         buscarEnArrChar();*/
 
                     //busquedaBinaria(arrNombreCancion, nombreCancion, arrFrontera);
