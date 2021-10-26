@@ -195,40 +195,62 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
     }
 }
 
+void cuentaCaracteres(char cancionUser[], int& contadorCaracteres) {
+
+    for (int i = 1; i <= 49 /* max - 1 */ ; i++) {
+        if (cancionUser[i] != ' ')
+            contadorCaracteres++;
+        i = 49;
+    }
+}
+
 // POSIBLES SOLUCIONES ENCUENTRA SECUENCIA PARA COMODINES SERVICIO 1
-void encuentraSec(char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, bool& found) {
+void encuentraSec(char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, int& contadorCaracteres, bool& found) {
 
     found = true;
-    for (int i = 0; i <= arrFrontera; i++) {
+    for (int i = 0; i <= contadorCaracteres; i++) {
         if (arrCharCancion[inicSec + i - 1] != cancionUser[i])
             found = false;
     }
 }
 
-void buscarSec(char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, bool& found) {
+void buscarSec(Canciones arrCanciones[], string cancionesEncontradras[], char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, int& contadorCaracteres, bool& found) {
 
     inicSec = 1;
     found = false;
 
-    while ((inicSec <= arrFrontera) && (!found)) {
-        encuentraSec(cancionUser, arrCharCancion, arrFrontera, inicSec, found);
+    while ((inicSec <= (50 - contadorCaracteres + 1)) && (!found)) {
+        encuentraSec(cancionUser, arrCharCancion, arrFrontera, inicSec, contadorCaracteres, found);
         if (!found)
             inicSec++;
     }
+
+    int indiceCancion = 0;
+    if (found) {
+        cancionesEncontradras[indiceCancion] = arrCanciones->obtenerNombreCancion();
+        indiceCancion++;
+    }
 }
 
-char stringToCharArr(Canciones arrCanciones[], char arrCharCancion[], int& arrFrontera) {
+void stringToCharArr(Canciones arrCanciones[], char arrCharCancion[], int& arrFrontera) {
 
     string stringCancion = arrCanciones->obtenerNombreCancion();
     strcpy(arrCharCancion, stringCancion.c_str());
-
-    return arrCharCancion[50];
 }
 
-void buscarEnArrWord(Canciones arrCanciones[], char arrCharCancion[], char cancionUser[], int inicSec, bool found, int& arrFrontera) {
+void buscarEnArrWord(Canciones arrCanciones[], string cancionesEncontradas[], char arrCharCancion[], char cancionUser[], int inicSec, int& contadorCaracteres, bool found, int& arrFrontera) {
 
-    stringToCharArr(arrCanciones, arrCharCancion, arrFrontera);
-    buscarSec(cancionUser, arrCharCancion, arrFrontera, inicSec, found);
+    for (int i = 0; i <= arrFrontera; i++) {
+        stringToCharArr(arrCanciones, arrCharCancion, arrFrontera);
+        buscarSec(arrCanciones, cancionesEncontradas, cancionUser, arrCharCancion, arrFrontera, inicSec, contadorCaracteres, found);
+    }
+}
+
+void imprimeArregloComodinWord(string cancionesEncontradas[], int& arrFrontera) {
+
+    cout << "--------------------------------------------------\n";
+    for (int i = 0; i < arrFrontera; i++)
+        cout << cancionesEncontradas[i] << endl;
 }
 
 // funcion que retorna una Lista que recorre entre 2 rangos (min y max) ingresados por teclado;
@@ -288,12 +310,18 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     cout << "   Nombre de la cancion: ";
                     cin.getline(aux, 1);
                     cin.getline(nombreCancion, 50);
+
                     int inicSec;
+                    int contadorCaracteres;
                     bool found;
                     char arrCharCancion[50];
+                    string cancionesEncontradas[arrFrontera];
 
-                    if (nombreCancion[1] == '*')
-                        buscarEnArrWord(arrCanciones, arrCharCancion, nombreCancion, inicSec, found, arrFrontera);
+                    if (nombreCancion[1] == '*') {
+                        cuentaCaracteres(nombreCancion, contadorCaracteres);
+                        buscarEnArrWord(arrCanciones, cancionesEncontradas, arrCharCancion, nombreCancion, inicSec, contadorCaracteres, found, arrFrontera);
+                        imprimeArregloComodinWord(cancionesEncontradas, arrFrontera);
+                    }
 
                     /*if (nombreCancion[1] == '?')
                         buscarEnArrChar();*/
