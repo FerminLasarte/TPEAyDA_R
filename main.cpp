@@ -198,9 +198,12 @@ void busquedaBinaria(tsegArreglo arrNombreCancion[], const string& nombreCancion
 void cuentaCaracteres(char cancionUser[], int& contadorCaracteres) {
 
     for (int i = 1; i <= 49 /* max - 1 */ ; i++) {
-        if (cancionUser[i] != ' ')
+        if (cancionUser[i] == ' ') {
+            i = 49;
+            contadorCaracteres--;
+        }
+        else
             contadorCaracteres++;
-        i = 49;
     }
 }
 
@@ -208,41 +211,43 @@ void cuentaCaracteres(char cancionUser[], int& contadorCaracteres) {
 void encuentraSec(char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, int& contadorCaracteres, bool& found) {
 
     found = true;
-    for (int i = 0; i <= contadorCaracteres; i++) {
+    for (int i = 0; i <= (contadorCaracteres); i++) {
         if (arrCharCancion[inicSec + i - 1] != cancionUser[i])
             found = false;
     }
 }
 
-void buscarSec(Canciones arrCanciones[], string cancionesEncontradras[], char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, int& contadorCaracteres, bool& found) {
+void buscarSec(string cancionesEncontradras[], char cancionUser[], char arrCharCancion[], int& arrFrontera, int& inicSec, int& contadorCaracteres, bool& found, string& stringCancion) {
 
     inicSec = 1;
     found = false;
 
     while ((inicSec <= (50 - contadorCaracteres + 1)) && (!found)) {
         encuentraSec(cancionUser, arrCharCancion, arrFrontera, inicSec, contadorCaracteres, found);
+        cout << "stringCancion: " << stringCancion << endl;
+        cout << "found: " << found << endl;
         if (!found)
             inicSec++;
     }
 
     int indiceCancion = 0;
     if (found) {
-        cancionesEncontradras[indiceCancion] = arrCanciones->obtenerNombreCancion();
+        cancionesEncontradras[indiceCancion] = stringCancion;
         indiceCancion++;
     }
 }
 
-void stringToCharArr(Canciones arrCanciones[], char arrCharCancion[], int& arrFrontera) {
+void stringToCharArr(Canciones arrCanciones[], char arrCharCancion[], int& arrFrontera, int avanzaArr, string& stringCancion) {
 
-    string stringCancion = arrCanciones->obtenerNombreCancion();
+    stringCancion = arrCanciones[avanzaArr].obtenerNombreCancion();
     strcpy(arrCharCancion, stringCancion.c_str());
 }
 
-void buscarEnArrWord(Canciones arrCanciones[], string cancionesEncontradas[], char arrCharCancion[], char cancionUser[], int inicSec, int& contadorCaracteres, bool found, int& arrFrontera) {
+void buscarEnArrWord(Canciones arrCanciones[], string cancionesEncontradas[], char arrCharCancion[], char cancionUser[], int inicSec, int& contadorCaracteres, bool found, int& arrFrontera, int avanzaArr, string stringCancion) {
 
-    for (int i = 0; i <= arrFrontera; i++) {
-        stringToCharArr(arrCanciones, arrCharCancion, arrFrontera);
-        buscarSec(arrCanciones, cancionesEncontradas, cancionUser, arrCharCancion, arrFrontera, inicSec, contadorCaracteres, found);
+    for (avanzaArr = 0; avanzaArr < arrFrontera; avanzaArr++) {
+        stringToCharArr(arrCanciones, arrCharCancion, arrFrontera, avanzaArr, stringCancion);
+        buscarSec(cancionesEncontradas, cancionUser, arrCharCancion, arrFrontera, inicSec, contadorCaracteres, found, stringCancion);
     }
 }
 
@@ -303,6 +308,8 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
 
                 inicArregloNombreCancion(arrNombreCancion, arrFrontera);
                 ordArrNombreCancion(arrCanciones, arrNombreCancion, arrFrontera);
+                for (int i = 0; i < 49; i++)
+                    nombreCancion[i] = ' ';
 
                 while ((seguir == 's') || (seguir == 'S')) {
                     cout << "   Elija una cancion de la lista. " << endl;
@@ -314,12 +321,14 @@ void opciones(Canciones arrCanciones[], tsegArreglo arrNombreCancion[], int& arr
                     int inicSec;
                     int contadorCaracteres;
                     bool found;
+                    int avanzaArr;
                     char arrCharCancion[50];
+                    string stringCancion;
                     string cancionesEncontradas[arrFrontera];
 
-                    if (nombreCancion[1] == '*') {
+                    if (nombreCancion[0] == '*') {
                         cuentaCaracteres(nombreCancion, contadorCaracteres);
-                        buscarEnArrWord(arrCanciones, cancionesEncontradas, arrCharCancion, nombreCancion, inicSec, contadorCaracteres, found, arrFrontera);
+                        buscarEnArrWord(arrCanciones, cancionesEncontradas, arrCharCancion, nombreCancion, inicSec, contadorCaracteres, found, arrFrontera, avanzaArr, stringCancion);
                         imprimeArregloComodinWord(cancionesEncontradas, arrFrontera);
                     }
 
