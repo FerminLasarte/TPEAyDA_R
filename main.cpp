@@ -226,8 +226,10 @@ void buscarSec(string cancionesEncontradras[], char cancionUser[], char arrCharC
         encuentraSec(cancionUser, arrCharCancion, arrFrontera, inicSec, contadorCaracteres, found);
         cout << "stringCancion: " << stringCancion << endl;
         cout << "found: " << found << endl;
-        if (!found)
+        if (!found) {
             inicSec++;
+            cout << "inic sec: " << inicSec << endl;
+        }
     }
 
     int indiceCancion = 0;
