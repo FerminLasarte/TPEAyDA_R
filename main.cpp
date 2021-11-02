@@ -5,6 +5,7 @@
 #include <clocale>
 #include <cstdio>
 #include <cctype>
+#include <list>
 #include "Canciones.h"
 #include "Lista.h"
 
@@ -67,7 +68,8 @@ Canciones* procesar_archivo_entrada(string origen, int& arrFrontera)
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
 
             string generos = lst_generos.substr(1, lst_generos.size()-2);
-            string listaGeneros[10];
+            //string listaGeneros[10];
+            list<string> listaGeneros;
             int pos_inicial_generos = 0, pos_final_generos = 0;
             int nroGenero = 0;
             while (pos_final_generos != -1) {
