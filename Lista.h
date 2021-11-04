@@ -1,7 +1,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 #include <iostream>
-#include "Canciones.h"
+#include "Cancion.h"
 
 class Lista
 {
@@ -10,25 +10,27 @@ private:
 
     struct nodo
     {
-        Canciones* dato;
-        nodo* sig = NULL;
+        Cancion* dato;
+        nodo* sig = nullptr;
     };
 
-    nodo* cabeza;
+    nodo *cabeza, *final;
+    int longitud;
 
 public:
 
     Lista();
     virtual ~Lista();
 
-    void insertarLista(Canciones& item);
-    bool listaVacia(nodo* pointer);
-    Canciones* obtenerDato();
+    void insertarLista(Cancion& item);
+    bool listaVacia() const;
+    Cancion* obtenerDato();
 
     nodo* publico;
 
     void volverInicio();
     void avanzar();
+    void imprimirLista();
 };
 
 #endif // LISTA_H

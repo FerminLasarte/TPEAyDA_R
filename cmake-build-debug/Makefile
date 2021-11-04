@@ -128,6 +128,30 @@ TPEAyDA_R/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/build
 .PHONY : TPEAyDA_R/fast
 
+Cancion.obj: Cancion.cpp.obj
+.PHONY : Cancion.obj
+
+# target to build an object file
+Cancion.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Cancion.cpp.obj
+.PHONY : Cancion.cpp.obj
+
+Cancion.i: Cancion.cpp.i
+.PHONY : Cancion.i
+
+# target to preprocess a source file
+Cancion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Cancion.cpp.i
+.PHONY : Cancion.cpp.i
+
+Cancion.s: Cancion.cpp.s
+.PHONY : Cancion.s
+
+# target to generate assembly for a file
+Cancion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Cancion.cpp.s
+.PHONY : Cancion.cpp.s
+
 Canciones.obj: Canciones.cpp.obj
 .PHONY : Canciones.obj
 
@@ -209,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TPEAyDA_R
+	@echo ... Cancion.obj
+	@echo ... Cancion.i
+	@echo ... Cancion.s
 	@echo ... Canciones.obj
 	@echo ... Canciones.i
 	@echo ... Canciones.s

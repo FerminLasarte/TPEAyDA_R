@@ -1,35 +1,40 @@
-#ifndef CANCIONES_H
-#define CANCIONES_H
+#ifndef TPAYDAFIN_CANCIONES_H
+#define TPAYDAFIN_CANCIONES_H
 #include <iostream>
-
-using namespace std;
+#include "Cancion.h"
+#include "Lista.h"
 
 class Canciones {
 
 private:
 
-    unsigned int nroCancion;
-    string interprete;
-    string nombreCancion;
-    unsigned int duracion;
-    string anio;
-    string generos[10];
-    unsigned int reproducciones;
+    struct estructura {
+        Cancion dato;
+        estructura *mayNombreCancion, *menNombreCancion;
+    };
+
+    estructura *arrCanciones;
+    estructura *raizOrdenNombre;
+    int actual, longitud;
+
+    void ordArrPorCriterio();
+    estructura *orrPorNombreRecursivo(estructura *arreglo[], int inicio, int fin);
+
+    void imprimirNombreCancionInOrder(estructura *actual);
+    Cancion *buscarEnArbol(estructura *actual, string nombreCancion);
 
 public:
+
     Canciones();
-    Canciones(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, string generos[], unsigned int reproducciones);
     virtual ~Canciones();
 
-    unsigned int obtenerNroCancion() const;
-    string obtenerInterprete() const;
-    string obtenerNombreCancion() const;
-    unsigned int obtenerDuracion() const;
-    string obtenerAnio() const;
-    string obtenerGeneros(int i) const;
-    unsigned int obtenerReproducciones() const;
+    void setMax(int maximo);
+    void addCancion(Cancion& cancion);
 
-    void imprimeDatos();
+    void imprimirNorm();
+    void imprimirNombreCancion();
+    void buscarPorNombre(string nombreCancion);
+    Lista recorrerEntreRangos(string minAnio, string maxAnio);
 };
 
-#endif //CANCIONES_H
+#endif //TPAYDAFIN_CANCIONES_H
