@@ -200,6 +200,30 @@ Lista.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/Lista.cpp.s
 .PHONY : Lista.cpp.s
 
+ListaString.obj: ListaString.cpp.obj
+.PHONY : ListaString.obj
+
+# target to build an object file
+ListaString.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/ListaString.cpp.obj
+.PHONY : ListaString.cpp.obj
+
+ListaString.i: ListaString.cpp.i
+.PHONY : ListaString.i
+
+# target to preprocess a source file
+ListaString.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/ListaString.cpp.i
+.PHONY : ListaString.cpp.i
+
+ListaString.s: ListaString.cpp.s
+.PHONY : ListaString.s
+
+# target to generate assembly for a file
+ListaString.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TPEAyDA_R.dir\build.make CMakeFiles/TPEAyDA_R.dir/ListaString.cpp.s
+.PHONY : ListaString.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -242,6 +266,9 @@ help:
 	@echo ... Lista.obj
 	@echo ... Lista.i
 	@echo ... Lista.s
+	@echo ... ListaString.obj
+	@echo ... ListaString.i
+	@echo ... ListaString.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

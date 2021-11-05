@@ -1,7 +1,7 @@
 #ifndef TPAYDAFIN_CANCION_H
 #define TPAYDAFIN_CANCION_H
 #include <iostream>
-#include <list>
+#include "ListaString.h"
 
 using namespace std;
 
@@ -14,12 +14,12 @@ private:
     string nombreCancion;
     unsigned int duracion;
     string anio;
-    list<string> listaGeneros;
+    ListaString listaGeneros;
     unsigned int reproducciones;
 
 public:
     Cancion();
-    Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, list<string> listaGeneros, unsigned int reproducciones);
+    Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, ListaString listaGeneros, unsigned int reproducciones);
     virtual ~Cancion();
 
     unsigned int obtenerNroCancion() const;

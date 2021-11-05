@@ -13,14 +13,8 @@ C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 iostream
 -
-list
--
-
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.cpp
-Canciones.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
-Lista.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
+ListaString.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/ListaString.h
 
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
 iostream
@@ -30,23 +24,23 @@ C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 Lista.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.cpp
-Lista.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
-
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 iostream
 -
 Cancion.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
+
+C:/Users/fermi/CLionProjects/TPEAyDA_R/ListaString.h
+string
+-
 
 C:/Users/fermi/CLionProjects/TPEAyDA_R/main.cpp
 iostream
 -
 fstream
 -
-list
--
+ListaString.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/ListaString.h
 Cancion.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 Canciones.h

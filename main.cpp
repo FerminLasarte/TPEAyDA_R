@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <list>
+#include "ListaString.h"
 #include "Cancion.h"
 #include "Canciones.h"
-
+// implementar lista
 using namespace std;
 
 /**
@@ -57,13 +57,12 @@ void procesar_archivo_entrada(string origen, Canciones &conjunto)
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
 
             string generos = lst_generos.substr(1, lst_generos.size()-2);
-            //string listaGeneros[10];
-            list<string> listaGeneros;
+            ListaString listaGeneros;
             int pos_inicial_generos = 0, pos_final_generos = 0;
             int nroGenero = 0;
             while (pos_final_generos != -1) {
                 pos_final_generos = generos.find('|', pos_inicial_generos);
-                listaGeneros.push_back(generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos));
+                listaGeneros.insertarLista(generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos));
                 pos_inicial_generos = pos_final_generos + 1;
                 nroGenero++;
             }
@@ -172,6 +171,7 @@ void opciones(Canciones &conjunto) {
                     cin.ignore();
                     getline(cin, genero);
                     cout << endl;
+                }
                 break;
             }
             default: {

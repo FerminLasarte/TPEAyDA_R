@@ -1,6 +1,4 @@
 #include "Canciones.h"
-#include <list>
-#include "Lista.h"
 
 Canciones::Canciones() {
     this->raizOrdenNombre = nullptr;

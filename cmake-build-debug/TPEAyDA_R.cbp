@@ -98,6 +98,12 @@
 		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h">
 			<Option target="TPEAyDA_R"/>
 		</Unit>
+		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/ListaString.cpp">
+			<Option target="TPEAyDA_R"/>
+		</Unit>
+		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/ListaString.h">
+			<Option target="TPEAyDA_R"/>
+		</Unit>
 		<Unit filename="C:/Users/fermi/CLionProjects/TPEAyDA_R/main.cpp">
 			<Option target="TPEAyDA_R"/>
 		</Unit>

@@ -6,16 +6,15 @@ Cancion::Cancion() {
     // com
 }
 
-Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, list<string> listaGeneros, unsigned int reproducciones) {
+Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, ListaString listaGeneros, unsigned int reproducciones) {
     this->nroCancion = nroCancion;
     this->interprete = interprete;
     this->nombreCancion = nombreCancion;
     this->duracion = duracion;
     this->anio = anio;
-    list<string>::const_iterator it = listaGeneros.begin();
-    while (it != listaGeneros.end()) {
+    while (listaGeneros.publico != nullptr) {
         this->listaGeneros = listaGeneros;
-        it++;
+        listaGeneros.avanzar();
     }
     this->reproducciones = reproducciones;
 }
@@ -55,10 +54,9 @@ void Cancion::imprimeDatos() {
     cout << " Duracion:             " << this->duracion << endl;
     cout << " Anio de Lanzamiento:  " << this->anio << endl;
     cout << " Generos:              ";
-    list<string>::const_iterator it = listaGeneros.begin();
-    while (it != listaGeneros.end()) {
-        cout << *it << " ";
-        it++;
+    while (listaGeneros.publico != nullptr) {
+        cout << this->listaGeneros.publico->generos << " ";
+        listaGeneros.avanzar();
     }
     cout << endl;
     cout << " Reproducciones        " << this->reproducciones << endl;
