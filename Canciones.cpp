@@ -121,7 +121,7 @@ void Canciones::ordArrPorCriterioRepro() {
     }
 }
 
-void Canciones::buscarEnArrGenero(estructura *pointer, string genero) {
+/*void Canciones::buscarEnArrGenero(estructura *pointer, string genero) {
     list<Canciones> listaTopGeneros;
     for (int i = 0; i < longitud; i++) {
         while (listaTopGeneros.size() < 10) {
@@ -137,4 +137,4 @@ void Canciones::buscarPorGenero(string genero) {
         mostrar->imprimeDatos();
     else
         cout << "La cancion: " << genero << " no se encuentra en la lista." << endl;
-}
+}*/

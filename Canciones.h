@@ -23,7 +23,7 @@ private:
 
     void imprimirNombreCancionInOrder(estructura *actual);
     Cancion *buscarEnArbolNombre(estructura *actual, string nombreCancion);
-    void buscarEnArrGenero(estructura *pointer, string genero);
+    //void buscarEnArrGenero(estructura *pointer, string genero);
 
 public:
 
@@ -36,7 +36,7 @@ public:
     void imprimirNorm();
     void imprimirNombreCancion();
     void buscarPorNombre(string nombreCancion);
-    void buscarPorGenero(string genero);
+    //void buscarPorGenero(string genero);
     Lista recorrerEntreRangos(string minAnio, string maxAnio);
 };
 

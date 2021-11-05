@@ -4,8 +4,6 @@
 #include "Cancion.h"
 #include "Canciones.h"
 
-// COMODINES LIBRES
-
 using namespace std;
 
 /**
