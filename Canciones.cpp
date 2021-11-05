@@ -1,4 +1,5 @@
 #include "Canciones.h"
+#include <list>
 #include "Lista.h"
 
 Canciones::Canciones() {
@@ -23,10 +24,10 @@ void Canciones::addCancion(Cancion &cancion) {
     this->arrCanciones[actual].menNombreCancion = nullptr;
     actual++;
     if (actual == longitud)
-        ordArrPorCriterio();
+        ordArrPorCriterioNombre();
 }
 
-void Canciones::ordArrPorCriterio() {
+void Canciones::ordArrPorCriterioNombre() {
     estructura *temp[longitud];
 
     for (int i = 0; i < longitud; i++)
@@ -47,7 +48,7 @@ void Canciones::ordArrPorCriterio() {
 
 Canciones::estructura *Canciones::orrPorNombreRecursivo(estructura *arreglo[], int inicio, int fin) {
     if (inicio > fin)
-        return NULL;
+        return nullptr;
     else {
         int mid = ((inicio + fin) / 2);
         arreglo[mid]->mayNombreCancion = orrPorNombreRecursivo(arreglo, mid + 1, fin);    // O (log(n))
@@ -73,18 +74,18 @@ void Canciones::imprimirNombreCancionInOrder(estructura *actual) {
     }
 }
 
-Cancion *Canciones::buscarEnArbol(estructura *actual, string nombreCancion) {
+Cancion *Canciones::buscarEnArbolNombre(estructura *actual, string nombreCancion) {
     if (actual == nullptr)
         return nullptr;
     else if (actual->dato.obtenerNombreCancion() == nombreCancion)
         return &actual->dato;
     else if (actual->dato.obtenerNombreCancion() < nombreCancion)
-        return buscarEnArbol(actual->mayNombreCancion, nombreCancion);
-    else return buscarEnArbol(actual->menNombreCancion, nombreCancion);
+        return buscarEnArbolNombre(actual->mayNombreCancion, nombreCancion);
+    else return buscarEnArbolNombre(actual->menNombreCancion, nombreCancion);
 }
 
 void Canciones::buscarPorNombre(string nombreCancion) {
-    Cancion *mostrar = buscarEnArbol(raizOrdenNombre, nombreCancion);
+    Cancion *mostrar = buscarEnArbolNombre(raizOrdenNombre, nombreCancion);
     if (mostrar != nullptr)
         mostrar->imprimeDatos();
     else
@@ -101,4 +102,39 @@ Lista Canciones::recorrerEntreRangos(string minAnio, string maxAnio) {
     }
     cout << "--------------------------------------------------\n";
     return listaCanciones;
+}
+
+void Canciones::ordArrPorCriterioRepro() {
+    estructura *temp[longitud];
+
+    for (int i = 0; i < longitud; i++)
+        temp[i] = nullptr;
+    for (int k = 0; k < longitud; k++)
+    {
+        int i=0;
+        while ((i < longitud) && (temp[i] != nullptr) && (temp[i]->dato.obtenerReproducciones() < arrCanciones[k].dato.obtenerReproducciones()))
+            i++;
+        if (temp[i] != nullptr)
+            for (int j = longitud - 1; j > i; j--)
+                temp[j] = temp[j - 1];
+        temp[i] = &arrCanciones[k];
+    }
+}
+
+void Canciones::buscarEnArrGenero(estructura *pointer, string genero) {
+    list<Canciones> listaTopGeneros;
+    for (int i = 0; i < longitud; i++) {
+        while (listaTopGeneros.size() < 10) {
+            if ()
+        }
+    }
+}
+
+void Canciones::buscarPorGenero(string genero) {
+
+    Cancion *mostrar = buscarEnArrGenero(raizOrdenNombre, genero);
+    if (mostrar != nullptr)
+        mostrar->imprimeDatos();
+    else
+        cout << "La cancion: " << genero << " no se encuentra en la lista." << endl;
 }

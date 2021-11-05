@@ -6,35 +6,49 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.cpp
+Cancion.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
+
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
+iostream
+-
+list
+-
+
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.cpp
+Canciones.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
+Lista.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
+
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
 iostream
 -
+Cancion.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
+Lista.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
+
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.cpp
+Lista.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 iostream
 -
-Canciones.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
+Cancion.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 
 C:/Users/fermi/CLionProjects/TPEAyDA_R/main.cpp
 iostream
 -
 fstream
 -
-string
--
-cstring
--
-clocale
--
-cstdio
--
-cctype
--
 list
 -
+Cancion.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 Canciones.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
-Lista.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 

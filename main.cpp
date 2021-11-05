@@ -102,7 +102,7 @@ void showMenu() {
 
 void opciones(Canciones &conjunto) {
     int opcion = 0;
-    string nombreCancion;
+    string nombreCancion, genero;
     char seguir;
 
     while (opcion != -1) {
@@ -169,7 +169,11 @@ void opciones(Canciones &conjunto) {
                 break;
             }
             case 4: {
-                // servicio generos
+                while ((seguir == 's') || (seguir == 'S')) {
+                    cout << "   Elija un genero de la lista: " << endl;
+                    cin.ignore();
+                    getline(cin, genero);
+                    cout << endl;
                 break;
             }
             default: {
