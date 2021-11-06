@@ -4,24 +4,18 @@
 CMakeFiles/TPEAyDA_R.dir/Cancion.cpp.obj: \
  ../Cancion.cpp \
  ../Cancion.h \
- ../ListaString.h
+ ../Lista.h
 CMakeFiles/TPEAyDA_R.dir/Canciones.cpp.obj: \
  ../Cancion.h \
  ../Canciones.cpp \
  ../Canciones.h \
- ../Lista.h \
- ../ListaString.h
+ ../Lista.h
 CMakeFiles/TPEAyDA_R.dir/Lista.cpp.obj: \
  ../Cancion.h \
  ../Lista.cpp \
- ../Lista.h \
- ../ListaString.h
-CMakeFiles/TPEAyDA_R.dir/ListaString.cpp.obj: \
- ../ListaString.cpp \
- ../ListaString.h
+ ../Lista.h
 CMakeFiles/TPEAyDA_R.dir/main.cpp.obj: \
  ../Cancion.h \
  ../Canciones.h \
  ../Lista.h \
- ../ListaString.h \
  ../main.cpp

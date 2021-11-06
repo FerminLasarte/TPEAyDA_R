@@ -37,7 +37,7 @@ public:
     void imprimirNombreCancion();
     void buscarPorNombre(string nombreCancion);
     //void buscarPorGenero(string genero);
-    Lista recorrerEntreRangos(string minAnio, string maxAnio);
+    void recorrerEntreRangos(Lista<Cancion> &listaCancionRetorno, string minAnio, string maxAnio);
 };
 
 #endif //TPAYDAFIN_CANCIONES_H

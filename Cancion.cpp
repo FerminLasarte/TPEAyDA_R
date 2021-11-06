@@ -6,7 +6,7 @@ Cancion::Cancion() {
     // com
 }
 
-Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, ListaString listaGeneros, unsigned int reproducciones) {
+Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, Lista<Cancion> listaGeneros, unsigned int reproducciones) {
     this->nroCancion = nroCancion;
     this->interprete = interprete;
     this->nombreCancion = nombreCancion;
@@ -54,8 +54,9 @@ void Cancion::imprimeDatos() {
     cout << " Duracion:             " << this->duracion << endl;
     cout << " Anio de Lanzamiento:  " << this->anio << endl;
     cout << " Generos:              ";
+    listaGeneros.volverInicio();
     while (listaGeneros.publico != nullptr) {
-        cout << this->listaGeneros.publico->generos << " ";
+        cout << this->listaGeneros.publico->dato << " ";
         listaGeneros.avanzar();
     }
     cout << endl;

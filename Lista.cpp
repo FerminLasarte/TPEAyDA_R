@@ -1,14 +1,15 @@
 #include "Lista.h"
 
 using namespace std;
-Lista::Lista() {
+
+template <typename T> Lista<T>::Lista() {
     this->cabeza = nullptr;
     this->final = nullptr;
     this->longitud = 0;
     this->publico = nullptr;
 }
 
-Lista::~Lista() {
+template <typename T> Lista<T>::~Lista() {
     nodo* aux = this->cabeza;
     while (aux != nullptr)
     {
@@ -18,11 +19,11 @@ Lista::~Lista() {
     }
 }
 
-bool Lista::listaVacia() const {
+template <typename T> bool Lista<T>::listaVacia() const {
     return (longitud == 0);
 }
 
-void Lista::insertarLista(Cancion& item) {
+template <typename T> void Lista<T>::insertarLista(T &item) {
     nodo* insertar = new nodo;
 
     insertar->dato = &item;
@@ -39,23 +40,17 @@ void Lista::insertarLista(Cancion& item) {
     longitud++;
 }
 
-Cancion* Lista::obtenerDato() {
+template <typename T> T* Lista<T>::obtenerDato() {
     return this->publico->dato;
 }
 
-void Lista::volverInicio() {
+template <typename T> void Lista<T>::volverInicio() {
     this->publico = this->cabeza;
 }
 
-void Lista::avanzar() {
+template <typename T> void Lista<T>::avanzar() {
     this->publico = this->publico->sig;
 }
 
-void Lista::imprimirLista() {
-    nodo* aux = this->cabeza;
-    while (aux != nullptr)
-    {
-        aux->dato->imprimeDatos();
-        aux = aux->sig;
-    }
-}
+template class Lista<string>;
+template class Lista<Cancion>;

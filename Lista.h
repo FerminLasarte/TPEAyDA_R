@@ -3,14 +3,15 @@
 #include <iostream>
 #include "Cancion.h"
 
-class Lista
-{
+template <typename T>
+
+class Lista {
 
 private:
 
     struct nodo
     {
-        Cancion* dato;
+        T* dato;
         nodo* sig = nullptr;
     };
 
@@ -22,15 +23,14 @@ public:
     Lista();
     virtual ~Lista();
 
-    void insertarLista(Cancion& item);
+    void insertarLista(T &item);
     bool listaVacia() const;
-    Cancion* obtenerDato();
+    T* obtenerDato();
 
     nodo* publico;
 
     void volverInicio();
     void avanzar();
-    void imprimirLista();
 };
 
 #endif // LISTA_H

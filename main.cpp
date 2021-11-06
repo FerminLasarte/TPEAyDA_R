@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "ListaString.h"
+#include "Lista.h"
 #include "Cancion.h"
 #include "Canciones.h"
 // implementar lista
@@ -57,7 +57,7 @@ void procesar_archivo_entrada(string origen, Canciones &conjunto)
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
 
             string generos = lst_generos.substr(1, lst_generos.size()-2);
-            ListaString listaGeneros;
+            Lista<string> listaGeneros;
             int pos_inicial_generos = 0, pos_final_generos = 0;
             int nroGenero = 0;
             while (pos_final_generos != -1) {

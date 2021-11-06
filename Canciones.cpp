@@ -90,16 +90,10 @@ void Canciones::buscarPorNombre(string nombreCancion) {
         cout << "La cancion: " << nombreCancion << " no se encuentra en la lista." << endl;
 }
 
-Lista Canciones::recorrerEntreRangos(string minAnio, string maxAnio) {
-    Lista listaCanciones;
-
+void Canciones::recorrerEntreRangos(Lista<Cancion> &listaCancionRetorno, string minAnio, string maxAnio) {
     for (int i = 0; i < longitud; i++)
-    {
         if ((arrCanciones[i].dato.obtenerAnio() >= minAnio) && (arrCanciones[i].dato.obtenerAnio() <= maxAnio))
-            listaCanciones.insertarLista(arrCanciones[i].dato);
-    }
-    cout << "--------------------------------------------------\n";
-    return listaCanciones;
+            listaCancionRetorno.insertarLista(arrCanciones[i].dato);
 }
 
 void Canciones::ordArrPorCriterioRepro() {
