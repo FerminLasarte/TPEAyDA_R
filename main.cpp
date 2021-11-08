@@ -3,7 +3,7 @@
 #include "Lista.h"
 #include "Cancion.h"
 #include "Canciones.h"
-// implementar lista
+
 using namespace std;
 
 /**
@@ -146,7 +146,7 @@ void opciones(Canciones &conjunto) {
 
                     compruebaValores(minAnio, maxAnio);
 
-                    Lista auxLista = conjunto.recorrerEntreRangos(minAnio, maxAnio);
+                    Lista auxLista = conjunto.recorrerEntreRangos();
                     auxLista.volverInicio();
 
                     if (auxLista.publico == nullptr)

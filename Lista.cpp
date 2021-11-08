@@ -1,4 +1,5 @@
 #include "Lista.h"
+#include "Cancion.h"
 
 using namespace std;
 

@@ -1,7 +1,6 @@
 #ifndef LISTA_H
 #define LISTA_H
 #include <iostream>
-#include "Cancion.h"
 
 template <typename T>
 
