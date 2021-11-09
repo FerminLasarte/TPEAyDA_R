@@ -5,7 +5,7 @@ using namespace std;
 
 template <typename T> Lista<T>::Lista() {
     this->cabeza = nullptr;
-    this->final = nullptr;
+    this->cola = nullptr;
     this->longitud = 0;
     this->publico = nullptr;
 }
@@ -32,10 +32,10 @@ template <typename T> void Lista<T>::insertarLista(T &item) {
 
     if (cabeza == nullptr) {
         cabeza = insertar;
-        final = insertar;
+        cola = insertar;
     } else {
-        final->sig = insertar;
-        final = final->sig;
+        cola->sig = insertar;
+        cola = cola->sig;
     }
 
     longitud++;

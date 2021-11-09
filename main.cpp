@@ -62,7 +62,8 @@ void procesar_archivo_entrada(string origen, Canciones &conjunto)
             int nroGenero = 0;
             while (pos_final_generos != -1) {
                 pos_final_generos = generos.find('|', pos_inicial_generos);
-                listaGeneros.insertarLista(generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos));
+                string generoPorAgregar = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
+                listaGeneros.insertarLista(generoPorAgregar);
                 pos_inicial_generos = pos_final_generos + 1;
                 nroGenero++;
             }
@@ -146,7 +147,8 @@ void opciones(Canciones &conjunto) {
 
                     compruebaValores(minAnio, maxAnio);
 
-                    Lista auxLista = conjunto.recorrerEntreRangos(, string minAnio, string maxAnio);
+                    Lista<Cancion> auxLista;
+                    conjunto.recorrerEntreRangos(auxLista, minAnio, maxAnio);
                     auxLista.volverInicio();
 
                     if (auxLista.publico == nullptr)

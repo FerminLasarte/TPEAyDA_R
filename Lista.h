@@ -14,7 +14,7 @@ private:
         nodo* sig = nullptr;
     };
 
-    nodo *cabeza, *final;
+    nodo *cabeza, *cola;
     int longitud;
 
 public:
