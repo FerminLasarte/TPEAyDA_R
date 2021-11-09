@@ -11,13 +11,13 @@ template <typename T> Lista<T>::Lista() {
 }
 
 template <typename T> Lista<T>::~Lista() {
-    nodo* aux = this->cabeza;
+    /*nodo* aux = this->cabeza;
     while (aux != nullptr)
     {
         this->cabeza = this->cabeza->sig;
         delete aux;
         aux = this->cabeza;
-    }
+    }*/
 }
 
 template <typename T> bool Lista<T>::listaVacia() const {
