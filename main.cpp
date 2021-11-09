@@ -146,7 +146,7 @@ void opciones(Canciones &conjunto) {
 
                     compruebaValores(minAnio, maxAnio);
 
-                    Lista auxLista = conjunto.recorrerEntreRangos();
+                    Lista auxLista = conjunto.recorrerEntreRangos(, string minAnio, string maxAnio);
                     auxLista.volverInicio();
 
                     if (auxLista.publico == nullptr)

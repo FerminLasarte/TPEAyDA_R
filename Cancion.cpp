@@ -6,7 +6,7 @@ Cancion::Cancion() {
     // com
 }
 
-Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, Lista<Cancion> listaGeneros, unsigned int reproducciones) {
+Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, Lista<string> listaGeneros, unsigned int reproducciones) {
     this->nroCancion = nroCancion;
     this->interprete = interprete;
     this->nombreCancion = nombreCancion;
