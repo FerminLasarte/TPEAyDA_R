@@ -50,7 +50,7 @@ unsigned int Cancion::obtenerReproducciones() const {
 
 bool Cancion::generoPertenece(string generoABuscar) {
     listaGeneros.volverInicio();
-    //while ((listaGeneros.publico != nullptr) && (listaGeneros.publico->dato != generoABuscar))
+    while ((listaGeneros.publico != nullptr) && (listaGeneros.publico->dato != generoABuscar))
         listaGeneros.avanzar();
 
     if (listaGeneros.publico != nullptr)
