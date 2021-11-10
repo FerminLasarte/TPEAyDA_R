@@ -18,12 +18,10 @@ private:
     int actual, longitud;
 
     void ordArrPorCriterioNombre();
-    void obtenerTopTen(Lista<Cancion> &listaTopGeneros, string generoABuscar);
     estructura *orrPorNombreRecursivo(estructura *arreglo[], int inicio, int fin);
 
     void imprimirNombreCancionInOrder(estructura *actual);
     Cancion *buscarEnArbolNombre(estructura *actual, string nombreCancion);
-    //void buscarEnArrGenero(estructura *pointer, string genero);
 
 public:
 
@@ -36,7 +34,7 @@ public:
     void imprimirNorm();
     void imprimirNombreCancion();
     void buscarPorNombre(string nombreCancion);
-    //void buscarPorGenero(string genero);
+    void obtenerTopTen(Lista<Cancion> &listaTopGeneros, string generoABuscar);
     void recorrerEntreRangos(Lista<Cancion> &listaCancionRetorno, string minAnio, string maxAnio);
 };
 

@@ -175,7 +175,17 @@ void opciones(Canciones &conjunto) {
                     getline(cin, genero);
                     cout << endl;
 
-                    
+                    Lista<Cancion> listaTopGeneros;
+                    conjunto.obtenerTopTen(listaTopGeneros, genero);
+                    listaTopGeneros.volverInicio();
+
+                    if (listaTopGeneros.publico == nullptr)
+                        cout << "   No se ha encontrado ninguna cancion entre el rango asignado." << endl;
+                    else
+                        while (listaTopGeneros.publico != nullptr) {
+                            listaTopGeneros.publico->dato->imprimeDatos();
+                            listaTopGeneros.avanzar();
+                        }
                 }
                 break;
             }
