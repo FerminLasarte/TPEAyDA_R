@@ -96,7 +96,7 @@ void Canciones::recorrerEntreRangos(Lista<Cancion> &listaCancionRetorno, string 
             listaCancionRetorno.insertarLista(arrCanciones[i].dato);
 }
 
-void Canciones::ordArrPorCriterioRepro() {
+void Canciones::obtenerTopTen(Lista<Cancion> &listaTopGeneros, string generoABuscar) {
     estructura *temp[longitud];
 
     for (int i = 0; i < longitud; i++)
@@ -111,22 +111,11 @@ void Canciones::ordArrPorCriterioRepro() {
                 temp[j] = temp[j - 1];
         temp[i] = &arrCanciones[k];
     }
-}
 
-/*void Canciones::buscarEnArrGenero(estructura *pointer, string genero) {
-    list<Canciones> listaTopGeneros;
-    for (int i = 0; i < longitud; i++) {
-        while (listaTopGeneros.size() < 10) {
-            if ()
-        }
+    int i = 0;
+    while ((listaTopGeneros.calculaLeng() < 10) && (i < longitud)) {
+        if (temp[i]->dato.generoPertenece(generoABuscar))
+            listaTopGeneros.insertarLista(temp[i]->dato);
+        i++;
     }
 }
-
-void Canciones::buscarPorGenero(string genero) {
-
-    Cancion *mostrar = buscarEnArrGenero(raizOrdenNombre, genero);
-    if (mostrar != nullptr)
-        mostrar->imprimeDatos();
-    else
-        cout << "La cancion: " << genero << " no se encuentra en la lista." << endl;
-}*/

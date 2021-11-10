@@ -24,10 +24,10 @@ public:
 
     void insertarLista(T &item);
     bool listaVacia() const;
-    T* obtenerDato();
 
     nodo* publico;
 
+    int calculaLeng() const;
     void volverInicio();
     void avanzar();
 };

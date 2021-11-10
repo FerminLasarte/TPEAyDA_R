@@ -67,6 +67,7 @@ void procesar_archivo_entrada(string origen, Canciones &conjunto)
                 pos_inicial_generos = pos_final_generos + 1;
                 nroGenero++;
             }
+
             //Sexta posición del separador ;
             pos_inicial = pos_final + 1;
             pos_final = linea.find(';', pos_inicial);
@@ -173,6 +174,8 @@ void opciones(Canciones &conjunto) {
                     cin.ignore();
                     getline(cin, genero);
                     cout << endl;
+
+                    
                 }
                 break;
             }

@@ -11,13 +11,13 @@ template <typename T> Lista<T>::Lista() {
 }
 
 template <typename T> Lista<T>::~Lista() {
-    /*nodo* aux = this->cabeza;
+    nodo* aux = this->cabeza;
     while (aux != nullptr)
     {
         this->cabeza = this->cabeza->sig;
         delete aux;
         aux = this->cabeza;
-    }*/
+    }
 }
 
 template <typename T> bool Lista<T>::listaVacia() const {
@@ -41,16 +41,16 @@ template <typename T> void Lista<T>::insertarLista(T &item) {
     longitud++;
 }
 
-template <typename T> T* Lista<T>::obtenerDato() {
-    return this->publico->dato;
-}
-
 template <typename T> void Lista<T>::volverInicio() {
     this->publico = this->cabeza;
 }
 
 template <typename T> void Lista<T>::avanzar() {
     this->publico = this->publico->sig;
+}
+
+template<typename T> int Lista<T>::calculaLeng() const {
+    return longitud;
 }
 
 template class Lista<string>;

@@ -18,7 +18,7 @@ private:
     int actual, longitud;
 
     void ordArrPorCriterioNombre();
-    void ordArrPorCriterioRepro();
+    void obtenerTopTen(Lista<Cancion> &listaTopGeneros, string generoABuscar);
     estructura *orrPorNombreRecursivo(estructura *arreglo[], int inicio, int fin);
 
     void imprimirNombreCancionInOrder(estructura *actual);

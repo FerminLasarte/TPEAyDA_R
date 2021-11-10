@@ -29,6 +29,7 @@ public:
     string obtenerAnio() const;
     unsigned int obtenerReproducciones() const;
 
+    bool generoPertenece(string generoABuscar);
     void imprimeDatos();
 };
 
