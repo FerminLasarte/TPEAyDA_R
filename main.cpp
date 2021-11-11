@@ -121,12 +121,18 @@ void opciones(Canciones &conjunto) {
                 while ((seguir == 's') || (seguir == 'S')) {
                     cout << "   Elija una cancion de la lista. " << endl;
                     cout << "   Para utilizar comodines, ingrese un '*' o un '?' para buscar por palabras o caracteres respectivamente." << endl;
+                    cout << "   ACLARACION: " << endl;
+                    cout << "      La utilizacion de comodines funciona de la siguiente manera:" << endl;
+                    cout << "         - Debe ingresar el comodin que desea realizar, y a su derecha, sin espacios ni ningun otro caracter, " << endl;
+                    cout << "           debe ingresar la palabra o caracter que quiera. Recuerde que luego de ingresar el caracter comodin " << endl;
+                    cout << "           ya empieza a contar todo lo que introduzca como busqueda." << endl;
                     cout << "   Nombre de la cancion: ";
                     cin.ignore();
                     getline(cin, nombreCancion);
                     cout << endl;
 
-                    if ((nombreCancion[0] == '*') || (nombreCancion[0] == '?')) {
+                    if (((nombreCancion[0] == '*') || (nombreCancion[0] == '?')) && (nombreCancion[1] != ' ')) {
+
                         Lista<Cancion> auxListaComodin;
                         conjunto.busquedaLinealComodin(auxListaComodin, nombreCancion);
                         auxListaComodin.volverInicio();
@@ -137,8 +143,14 @@ void opciones(Canciones &conjunto) {
                                 auxListaComodin.publico->dato->imprimeDatos();
                                 auxListaComodin.avanzar();
                             }
-                    } else
-                        conjunto.buscarPorNombre(nombreCancion);
+                    } else {
+                        if (nombreCancion[1] == ' ') {
+                            cout << "   Comodin ingresado de forma incorrecta. Asegurese de ingresar el comodin a realizar y la palabra, sin utilizar espacios." << endl;
+                            cout << endl;
+                        }
+                        else
+                            conjunto.buscarPorNombre(nombreCancion);
+                    }
 
                     cout << "    Desea ingresar otra cancion?. Su respuesta (s/S): ";
                     cin >> seguir;
