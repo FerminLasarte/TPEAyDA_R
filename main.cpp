@@ -126,7 +126,20 @@ void opciones(Canciones &conjunto) {
                     getline(cin, nombreCancion);
                     cout << endl;
 
-                    conjunto.buscarPorNombre(nombreCancion);
+                    if ((nombreCancion[0] == '*') || (nombreCancion[0] == '?')) {
+                        Lista<Cancion> auxListaComodin;
+                        conjunto.busquedaLinealComodin(auxListaComodin, nombreCancion);
+                        auxListaComodin.volverInicio();
+                        if (auxListaComodin.publico == nullptr)
+                            cout << "   No se ha encontrado ninguna cancion con el comodin ingresado." << endl;
+                        else
+                            while (auxListaComodin.publico != nullptr) {
+                                auxListaComodin.publico->dato->imprimeDatos();
+                                auxListaComodin.avanzar();
+                            }
+
+                    } else
+                        conjunto.buscarPorNombre(nombreCancion);
 
                     cout << "    Desea ingresar otra cancion?. Su respuesta (s/S): ";
                     cin >> seguir;

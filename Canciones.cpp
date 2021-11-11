@@ -90,6 +90,29 @@ void Canciones::buscarPorNombre(string nombreCancion) {
         cout << "La cancion: " << nombreCancion << " no se encuentra en la lista." << endl;
 }
 
+bool Canciones::contiene(string cancionPorComparar, string nombreCancion) const {
+    int i = 0, j = 1;
+    while ((i < cancionPorComparar.size()) && (j < nombreCancion.size())) {
+        j = 1;
+        while ((j < nombreCancion.size()) && (i < cancionPorComparar.size()) && (cancionPorComparar[i] == nombreCancion[j])) {
+            i++;
+            j++;
+        }
+        i++;
+    }
+
+    if (j >= nombreCancion.size())
+        return true;
+    else return false;
+}
+
+void Canciones::busquedaLinealComodin(Lista<Cancion> &listaComodinRetorno, string nombreCancion) {
+    for (int i = 0; i < longitud; i++) {
+        if (contiene(arrCanciones[i].dato.obtenerNombreCancion(), nombreCancion))
+            listaComodinRetorno.insertarLista(arrCanciones[i].dato);
+    }
+}
+
 void Canciones::recorrerEntreRangos(Lista<Cancion> &listaCancionRetorno, string minAnio, string maxAnio) {
     for (int i = 0; i < longitud; i++)
         if ((arrCanciones[i].dato.obtenerAnio() >= minAnio) && (arrCanciones[i].dato.obtenerAnio() <= maxAnio))

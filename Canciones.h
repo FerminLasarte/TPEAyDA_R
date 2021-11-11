@@ -20,6 +20,7 @@ private:
     void ordArrPorCriterioNombre();
     estructura *orrPorNombreRecursivo(estructura *arreglo[], int inicio, int fin);
 
+    bool contiene(string cancionPorComparar, string nombreCancion) const;
     void imprimirNombreCancionInOrder(estructura *actual);
     Cancion *buscarEnArbolNombre(estructura *actual, string nombreCancion);
 
@@ -34,6 +35,7 @@ public:
     void imprimirNorm();
     void imprimirNombreCancion();
     void buscarPorNombre(string nombreCancion);
+    void busquedaLinealComodin(Lista<Cancion> &listaComodinRetorno, string nombreCancion);
     void obtenerTopTen(Lista<Cancion> &listaTopGeneros, string generoABuscar);
     void recorrerEntreRangos(Lista<Cancion> &listaCancionRetorno, string minAnio, string maxAnio);
 };
