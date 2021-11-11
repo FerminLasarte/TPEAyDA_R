@@ -137,7 +137,6 @@ void opciones(Canciones &conjunto) {
                                 auxListaComodin.publico->dato->imprimeDatos();
                                 auxListaComodin.avanzar();
                             }
-
                     } else
                         conjunto.buscarPorNombre(nombreCancion);
 
