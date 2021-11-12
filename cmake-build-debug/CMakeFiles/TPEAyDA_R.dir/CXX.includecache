@@ -6,17 +6,27 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.cpp
+Cancion.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
+
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
 iostream
 -
 Lista.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.cpp
-Lista.h
-C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.cpp
+Canciones.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
+
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Canciones.h
+iostream
+-
 Cancion.h
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Cancion.h
+Lista.h
+C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 
 C:/Users/fermi/CLionProjects/TPEAyDA_R/Lista.h
 iostream
