@@ -6,18 +6,12 @@ Cancion::Cancion() {
     // com
 }
 
-Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, Lista<string> listaGeneros, unsigned int reproducciones) {
+Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio) {
     this->nroCancion = nroCancion;
     this->interprete = interprete;
     this->nombreCancion = nombreCancion;
     this->duracion = duracion;
     this->anio = anio;
-    listaGeneros.volverInicio();
-    while (listaGeneros.publico != nullptr) {
-        this->listaGeneros = listaGeneros;
-        listaGeneros.avanzar();
-    }
-    this->reproducciones = reproducciones;
 }
 
 Cancion::~Cancion() {
@@ -50,12 +44,20 @@ unsigned int Cancion::obtenerReproducciones() const {
 
 bool Cancion::generoPertenece(string generoABuscar) {
     listaGeneros.volverInicio();
-    //while ((listaGeneros.publico != nullptr) && (listaGeneros.publico->dato != generoABuscar))
+    while ((listaGeneros.publico != nullptr) && (listaGeneros.publico->dato != generoABuscar))
         listaGeneros.avanzar();
 
     if (listaGeneros.publico != nullptr)
         return true;
     else return false;
+}
+
+void Cancion::agregarGenero(string &generoAAgregar) {
+    this->listaGeneros.insertarLista(generoAAgregar);
+}
+
+void Cancion::setReproducciones(unsigned int reproducciones) {
+    this->reproducciones = reproducciones;
 }
 
 void Cancion::imprimeDatos() {

@@ -10,7 +10,7 @@ private:
 
     struct nodo
     {
-        T* dato;
+        T dato;
         nodo* sig = nullptr;
     };
 

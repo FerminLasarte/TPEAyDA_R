@@ -25,8 +25,48 @@ void Canciones::addCancion(Cancion &cancion) {
         ordArrPorCriterioNombre();
 }
 
+/*void Canciones::merge(estructura *arreglo[], int inicio, int mitad, int fin) {
+    int h = inicio, i = inicio, j = mitad + 1, k;
+    estructura *temp[inicio + fin + 1];
+    while ((h <= mitad) && (j <= fin)) {
+        if (arreglo[h]->dato.obtenerNombreCancion() <= arreglo[j]->dato.obtenerNombreCancion()) {
+            temp[i] = arreglo[h];
+            h++;
+        } else {
+            temp[i] = arreglo[j];
+            j++;
+        }
+        i++;
+    }
+
+    if (h > mitad)
+        for (k = j; k <= fin; k++) {
+            temp[i] = arreglo[k];
+            i++;
+        }
+    else for (k = h; k <= fin; k++) {
+            temp[i] = arreglo[k];
+            i++;
+    }
+    for (k = inicio; k <= fin; k++)
+        arreglo[k] = temp[k];
+}
+
+void Canciones::mergeSort(estructura *arreglo[], int inicio, int fin) {
+    if (inicio < fin) {
+        int mitad = (inicio + fin) / 2;
+        mergeSort(arreglo, inicio, mitad);
+        mergeSort(arreglo, mitad + 1, fin);
+        merge(arreglo, inicio, mitad, fin);
+        cout << "termino." << " inicio: " << inicio << " fin: " << fin << endl;
+    }
+}*/
+
 void Canciones::ordArrPorCriterioNombre() {
     estructura *temp[longitud];
+
+    /*for (int i = 0; i < longitud; i++)
+        temp[i] = &arrCanciones[i];*/
 
     for (int i = 0; i < longitud; i++)
         temp[i] = nullptr;
@@ -127,7 +167,7 @@ void Canciones::obtenerTopTen(Lista<Cancion> &listaTopGeneros, string generoABus
     for (int k = 0; k < longitud; k++)
     {
         int i=0;
-        while ((i < longitud) && (temp[i] != nullptr) && (temp[i]->dato.obtenerReproducciones() < arrCanciones[k].dato.obtenerReproducciones()))
+        while ((i < longitud) && (temp[i] != nullptr) && (temp[i]->dato.obtenerReproducciones() > arrCanciones[k].dato.obtenerReproducciones()))
             i++;
         if (temp[i] != nullptr)
             for (int j = longitud - 1; j > i; j--)

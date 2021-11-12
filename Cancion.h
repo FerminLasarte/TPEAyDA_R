@@ -19,7 +19,7 @@ private:
 
 public:
     Cancion();
-    Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio, Lista<string> listaGeneros, unsigned int reproducciones);
+    Cancion(unsigned int nroCancion, string interprete, string nombreCancion, unsigned int duracion, string anio);
     virtual ~Cancion();
 
     unsigned int obtenerNroCancion() const;
@@ -30,6 +30,8 @@ public:
     unsigned int obtenerReproducciones() const;
 
     bool generoPertenece(string generoABuscar);
+    void agregarGenero(string &generoAAgregar);
+    void setReproducciones(unsigned int reproducciones);
     void imprimeDatos();
 };
 

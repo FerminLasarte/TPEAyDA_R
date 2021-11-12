@@ -57,13 +57,13 @@ void procesar_archivo_entrada(string origen, Canciones &conjunto)
             string lst_generos = linea.substr(pos_inicial, pos_final - pos_inicial);
 
             string generos = lst_generos.substr(1, lst_generos.size()-2);
-            Lista<string> listaGeneros;
             int pos_inicial_generos = 0, pos_final_generos = 0;
             int nroGenero = 0;
+            Cancion tCancion(nroCancion, interprete, nombreCancion, duracion, anio);
             while (pos_final_generos != -1) {
                 pos_final_generos = generos.find('|', pos_inicial_generos);
                 string generoPorAgregar = generos.substr(pos_inicial_generos, pos_final_generos - pos_inicial_generos);
-                listaGeneros.insertarLista(generoPorAgregar);
+                tCancion.agregarGenero(generoPorAgregar);
                 pos_inicial_generos = pos_final_generos + 1;
                 nroGenero++;
             }
@@ -72,8 +72,8 @@ void procesar_archivo_entrada(string origen, Canciones &conjunto)
             pos_inicial = pos_final + 1;
             pos_final = linea.find(';', pos_inicial);
             int reproducciones = atoi(linea.substr(pos_inicial, pos_final - pos_inicial).c_str());
+            tCancion.setReproducciones(reproducciones);
 
-            Cancion tCancion(nroCancion, interprete, nombreCancion, duracion, anio, listaGeneros, reproducciones);
             conjunto.addCancion(tCancion);
             nroCancion++;
         }
@@ -96,6 +96,7 @@ void showMenu() {
     cout << "1. Mostrar el listado completo de canciones." << endl;
     cout << "2. Verificar si existe una cancion." << endl;
     cout << "3. Listar todos las canciones lanzadas en algun rango de anios en particular." << endl;
+    cout << "4. Obtener las 10 canciones mas escuchadas de un genero determinado." << endl;
     cout << endl;
 }
 
@@ -117,7 +118,6 @@ void opciones(Canciones &conjunto) {
                 break;
             }
             case 2: {
-                // faltan comodines
                 while ((seguir == 's') || (seguir == 'S')) {
                     cout << "   Elija una cancion de la lista. " << endl;
                     cout << "   Para utilizar comodines, ingrese un '*' o un '?' para buscar por palabras o caracteres respectivamente." << endl;
@@ -125,7 +125,7 @@ void opciones(Canciones &conjunto) {
                     cout << "      La utilizacion de comodines funciona de la siguiente manera:" << endl;
                     cout << "         - Debe ingresar el comodin que desea realizar, y a su derecha, sin espacios ni ningun otro caracter, " << endl;
                     cout << "           debe ingresar la palabra o caracter que quiera. Recuerde que luego de ingresar el caracter comodin " << endl;
-                    cout << "           ya empieza a contar todo lo que introduzca como busqueda." << endl;
+                    cout << "           ya empieza a contar todo lo que introduzca como busqueda hasta que de ENTER o ingrese un espacio." << endl;
                     cout << "   Nombre de la cancion: ";
                     cin.ignore();
                     getline(cin, nombreCancion);
@@ -140,7 +140,7 @@ void opciones(Canciones &conjunto) {
                             cout << "   No se ha encontrado ninguna cancion con el comodin ingresado." << endl;
                         else
                             while (auxListaComodin.publico != nullptr) {
-                                auxListaComodin.publico->dato->imprimeDatos();
+                                auxListaComodin.publico->dato.imprimeDatos();
                                 auxListaComodin.avanzar();
                             }
                     } else {
@@ -162,7 +162,6 @@ void opciones(Canciones &conjunto) {
             case 3: {
                 while ((seguir == 's') || (seguir == 'S')) {
                     string minAnio, maxAnio;
-
                     cout << "   Ingrese dos valores como rangos de anios." << endl;
                     cout << "   Anio Menor: ";
                     cin >> minAnio;
@@ -180,7 +179,7 @@ void opciones(Canciones &conjunto) {
                         cout << "   No se ha encontrado ninguna cancion entre el rango asignado." << endl;
                     else
                         while (auxLista.publico != nullptr) {
-                            auxLista.publico->dato->imprimeDatos();
+                            auxLista.publico->dato.imprimeDatos();
                             auxLista.avanzar();
                         }
 
@@ -194,7 +193,7 @@ void opciones(Canciones &conjunto) {
             }
             case 4: {
                 while ((seguir == 's') || (seguir == 'S')) {
-                    cout << "   Elija un genero de la lista: " << endl;
+                    cout << "   Elija un genero de la lista: ";
                     cin.ignore();
                     getline(cin, genero);
                     cout << endl;
@@ -207,9 +206,15 @@ void opciones(Canciones &conjunto) {
                         cout << "   No se ha encontrado ninguna cancion entre el rango asignado." << endl;
                     else
                         while (listaTopGeneros.publico != nullptr) {
-                            listaTopGeneros.publico->dato->imprimeDatos();
+                            listaTopGeneros.publico->dato.imprimeDatos();
                             listaTopGeneros.avanzar();
                         }
+
+                    cout << endl;
+                    cout << "   Desea ingresar otro genero?. Su respuesta (s/S): ";
+                    cin >> seguir;
+                    if ((seguir != 's') && (seguir != 'S'))
+                        cout << "   Muchas gracias!" << endl;
                 }
                 break;
             }

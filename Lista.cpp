@@ -27,7 +27,7 @@ template <typename T> bool Lista<T>::listaVacia() const {
 template <typename T> void Lista<T>::insertarLista(T &item) {
     nodo* insertar = new nodo;
 
-    insertar->dato = &item;
+    insertar->dato = item;
     insertar->sig = nullptr;
 
     if (cabeza == nullptr) {
