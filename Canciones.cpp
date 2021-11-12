@@ -8,7 +8,7 @@ Canciones::Canciones() {
 }
 
 Canciones::~Canciones() {
-    //delete this->principal; ERRRROR.
+    delete[] this->arrCanciones;
 }
 
 void Canciones::setMax(int maximo) {
@@ -25,48 +25,8 @@ void Canciones::addCancion(Cancion &cancion) {
         ordArrPorCriterioNombre();
 }
 
-/*void Canciones::merge(estructura *arreglo[], int inicio, int mitad, int fin) {
-    int h = inicio, i = inicio, j = mitad + 1, k;
-    estructura *temp[inicio + fin + 1];
-    while ((h <= mitad) && (j <= fin)) {
-        if (arreglo[h]->dato.obtenerNombreCancion() <= arreglo[j]->dato.obtenerNombreCancion()) {
-            temp[i] = arreglo[h];
-            h++;
-        } else {
-            temp[i] = arreglo[j];
-            j++;
-        }
-        i++;
-    }
-
-    if (h > mitad)
-        for (k = j; k <= fin; k++) {
-            temp[i] = arreglo[k];
-            i++;
-        }
-    else for (k = h; k <= fin; k++) {
-            temp[i] = arreglo[k];
-            i++;
-    }
-    for (k = inicio; k <= fin; k++)
-        arreglo[k] = temp[k];
-}
-
-void Canciones::mergeSort(estructura *arreglo[], int inicio, int fin) {
-    if (inicio < fin) {
-        int mitad = (inicio + fin) / 2;
-        mergeSort(arreglo, inicio, mitad);
-        mergeSort(arreglo, mitad + 1, fin);
-        merge(arreglo, inicio, mitad, fin);
-        cout << "termino." << " inicio: " << inicio << " fin: " << fin << endl;
-    }
-}*/
-
 void Canciones::ordArrPorCriterioNombre() {
     estructura *temp[longitud];
-
-    /*for (int i = 0; i < longitud; i++)
-        temp[i] = &arrCanciones[i];*/
 
     for (int i = 0; i < longitud; i++)
         temp[i] = nullptr;
@@ -89,8 +49,8 @@ Canciones::estructura *Canciones::orrPorNombreRecursivo(estructura *arreglo[], i
         return nullptr;
     else {
         int mid = ((inicio + fin) / 2);
-        arreglo[mid]->mayNombreCancion = orrPorNombreRecursivo(arreglo, mid + 1, fin);    // O (log(n))
-        arreglo[mid]->menNombreCancion = orrPorNombreRecursivo(arreglo, inicio, mid - 1);     // O (log(n))
+        arreglo[mid]->mayNombreCancion = orrPorNombreRecursivo(arreglo, mid + 1, fin);
+        arreglo[mid]->menNombreCancion = orrPorNombreRecursivo(arreglo, inicio, mid - 1);
         return arreglo[mid];
     }
 }

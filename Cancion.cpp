@@ -12,6 +12,7 @@ Cancion::Cancion(unsigned int nroCancion, string interprete, string nombreCancio
     this->nombreCancion = nombreCancion;
     this->duracion = duracion;
     this->anio = anio;
+    this->reproducciones = 0;
 }
 
 Cancion::~Cancion() {
