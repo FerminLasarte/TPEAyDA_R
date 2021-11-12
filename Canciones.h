@@ -24,9 +24,6 @@ private:
     void imprimirNombreCancionInOrder(estructura *actual);
     Cancion *buscarEnArbolNombre(estructura *actual, string nombreCancion);
 
-    //void mergeSort(estructura *arreglo[], int inicio, int fin);
-    //void merge(estructura *arreglo[], int inicio, int mitad, int fin);
-
 public:
 
     Canciones();

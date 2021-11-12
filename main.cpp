@@ -203,7 +203,7 @@ void opciones(Canciones &conjunto) {
                     listaTopGeneros.volverInicio();
 
                     if (listaTopGeneros.publico == nullptr)
-                        cout << "   No se ha encontrado ninguna cancion entre el rango asignado." << endl;
+                        cout << "   No se ha encontrado ninguna cancion que coincida con el genero ingresado." << endl;
                     else
                         while (listaTopGeneros.publico != nullptr) {
                             listaTopGeneros.publico->dato.imprimeDatos();
